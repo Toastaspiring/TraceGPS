@@ -27,7 +27,10 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// "http://sio.lyceedelasalle.fr/tracegps/api/";
 	// Adresse du localhost en cas d'exécution sur le poste de développement (projet
 	// de tests des classes)
-	private static String _adresseHebergeur = "http://localhost/developpement/TraceGPS/PHP/TraceGPS/api/";
+
+	// J'ai remplacer par celui du lycee pour etre sur que c'est bon le vrais est :
+	// "http://sio.lyceedelasalle.fr/tracegps/api/"
+	private static String _adresseHebergeur = "http://sio.lyceedelasalle.fr/tracegps/api/";
 
 	// Noms des services web déjà traités par la passerelle
 	private static String _urlArreterEnregistrementParcours = "ArreterEnregistrementParcours";
@@ -49,7 +52,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 	// -------------------------------------------------------------------------------------------------
 	// ------------------------------------- méthodes déjà développées
-	// ---------------------------------
 	// -------------------------------------------------------------------------------------------------
 
 	// Méthode statique pour se connecter (service Connecter)
