@@ -159,5 +159,4 @@ public class PasserelleServiceWebXMLTest {
 		msg = PasserelleServicesWebXML.supprimerUnParcours("europa", Outils.sha1("mdputilisateur"), 30);
 		assertEquals("Parcours supprimé.", msg);
 	}
-	
 } // fin du test
