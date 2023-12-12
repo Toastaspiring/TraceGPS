@@ -29,7 +29,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// de tests des classes)
 
 	// J'ai remplacer par celui du lycee pour etre sur que c'est bon le vrais est :
-	// "http://sio.lyceedelasalle.fr/tracegps/api/"
+	// "http://localhost/developement/TraceGPS/api/"
 	private static String _adresseHebergeur = "http://sio.lyceedelasalle.fr/tracegps/api/";
 
 	// Noms des services web déjà traités par la passerelle
