@@ -312,8 +312,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// mdpSha1 : le mot de passe hashé en sha1
 	// lesUtilisateurs : collection (vide) à remplir à partir des données fournies
 	// par le service web
-	public static String getLesUtilisateursQueJautorise(String pseudo, String mdpSha1,
-			ArrayList<Utilisateur> lesUtilisateurs) {
+	public static String getLesUtilisateursQueJautorise(String pseudo, String mdpSha1, ArrayList<Utilisateur> lesUtilisateurs) {
 		String reponse = "";
 		try { // création d'un nouveau document XML à partir de l'URL du service web et des
 				// paramètres
@@ -388,7 +387,31 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// lePoint : un objet PointDeTrace (vide) qui permettra de récupérer le numéro
 	// attribué à partir des données fournies par le service web
 	public static String envoyerPosition(String pseudo, String mdpSha1, PointDeTrace lePoint) {
-		return ""; // METHODE A CREER ET TESTER
+		String reponse = "";
+		try { // création d'un nouveau document XML à partir de l'URL du service web et des
+				// paramètres
+			String urlDuServiceWeb = _adresseHebergeur + _urlSupprimerUnUtilisateur;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
+			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			// urlDuServiceWeb += "&pseudoAsupprimer=" + pseudoAsupprimer;
+
+			// création d'un flux en lecture (InputStream) à partir du service
+			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
+
+			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à
+			// parcourir le flux XML
+			Document leDocument = getDocumentXML(unFluxEnLecture);
+
+			// parsing du flux XML
+			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
+			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
+
+			// retour de la réponse du service web
+			return reponse;
+		} catch (Exception ex) {
+			String msg = "Erreur : " + ex.getMessage();
+			return msg;
+		}
 	}
 
 	// Méthode statique pour obtenir un parcours et la liste de ses points (service
