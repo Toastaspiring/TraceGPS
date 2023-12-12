@@ -29,8 +29,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// de tests des classes)
 
 	// J'ai remplacer par celui du lycee pour etre sur que c'est bon le vrais est :
-	// "http://localhost/developement/TraceGPS/api/"
-	private static String _adresseHebergeur = "http://sio.lyceedelasalle.fr/tracegps/api/";
+	// "http://localhost/developpement/TraceGPS/PHP/TraceGPS/api/"
+	private static String _adresseHebergeur = "http://localhost/developpement/TraceGPS/PHP/TraceGPS/api/";
 
 	// Noms des services web déjà traités par la passerelle
 	private static String _urlArreterEnregistrementParcours = "ArreterEnregistrementParcours";
@@ -272,7 +272,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 	// -------------------------------------------------------------------------------------------------
 	// --------------------------------- méthodes restant à développer
-	// ---------------------------------
 	// -------------------------------------------------------------------------------------------------
 
 	// Méthode statique pour demander un nouveau mot de passe (service DemanderMdp)
@@ -361,9 +360,34 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// l'autorisation
 	// texteMessage : le texte d'un message accompagnant la demande
 	// nomPrenom : le nom et le prénom du demandeur
-	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire,
-			String texteMessage, String nomPrenom) {
-		return ""; // METHODE A CREER ET TESTER
+	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire, String texteMessage, String nomPrenom) {
+		String reponse = "";
+		try { // création d'un nouveau document XML à partir de l'URL du service web et des
+				// paramètres
+			String urlDuServiceWeb = _adresseHebergeur + _urlDemanderUneAutorisation;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
+			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoDestinataire;
+			urlDuServiceWeb += "&texteMessage=" + texteMessage;
+			urlDuServiceWeb += "&nomPrenom=" + nomPrenom;
+
+			// création d'un flux en lecture (InputStream) à partir du service
+			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
+
+			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à
+			// parcourir le flux XML
+			Document leDocument = getDocumentXML(unFluxEnLecture);
+
+			// parsing du flux XML
+			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
+			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
+
+			// retour de la réponse du service web
+			return reponse;
+		} catch (Exception ex) {
+			String msg = "Erreur : " + ex.getMessage();
+			return msg;
+		}
 	}
 
 	// Méthode statique pour retirer une autorisation (service
