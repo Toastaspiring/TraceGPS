@@ -360,16 +360,15 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// l'autorisation
 	// texteMessage : le texte d'un message accompagnant la demande
 	// nomPrenom : le nom et le prénom du demandeur
-	public static String demanderUneAutorisation(String pseudoDemandeur, String mdpSha1, String pseudoDestinataire,
-			String texte, String nomPrenomDestinataire) {
+	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire, String texteMessage, String nomPrenom) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemanderUneAutorisation;
-			urlDuServiceWeb += "?pseudo=" + pseudoDemandeur;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoDestinataire;
-			urlDuServiceWeb += "&texte=" + texte;
-			urlDuServiceWeb += "&nomPrenomDestinataire=" + nomPrenomDestinataire;
+			urlDuServiceWeb += "&texteMessage=" + texteMessage;
+			urlDuServiceWeb += "&nomPrenom=" + nomPrenom;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
