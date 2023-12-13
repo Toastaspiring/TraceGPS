@@ -398,8 +398,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlRetirerUneAutorisation;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoARetirer;
-			urlDuServiceWeb += "&texte=" + texteMessage;
+			urlDuServiceWeb += "&pseudoARetirer=" + pseudoARetirer;
+			urlDuServiceWeb += "&texteMessage=" + texteMessage;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
