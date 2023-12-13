@@ -23,7 +23,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Erreur : authentification incorrecte.", msg);
 		msg = PasserelleServicesWebXML.connecter("admin", Outils.sha1("mdpadmin"));
 		assertEquals("Administrateur authentifié.", msg);
-		msg = PasserelleServicesWebXML.connecter("europa", Outils.sha1("mdputilisateur"));
+		msg = PasserelleServicesWebXML.connecter("europa", "f82eb3d56258123beaa75bfd62d65768730989d5");
 		assertEquals("Utilisateur authentifié.", msg);
 	}
 		
@@ -66,9 +66,9 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Erreur : le nouveau mot de passe et sa confirmation sont différents.", msg);
 		msg = PasserelleServicesWebXML.changerDeMdp("europa", Outils.sha1("mdputilisateurrrr"), "passepasse", "passepasse");
 		assertEquals("Erreur : authentification incorrecte.", msg);
-		msg = PasserelleServicesWebXML.changerDeMdp("europa", Outils.sha1("mdputilisateur"), "mdputilisateurrrr", "mdputilisateurrrr");
+		msg = PasserelleServicesWebXML.changerDeMdp("europa", "13e3668bbee30b004380052b086457b014504b3e", "mdputilisateur", "mdputilisateur");
 		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
-		msg = PasserelleServicesWebXML.changerDeMdp("europa", Outils.sha1("mdputilisateurrrr"), "mdputilisateur", "mdputilisateur");
+		msg = PasserelleServicesWebXML.changerDeMdp("europa", "13e3668bbee30b004380052b086457b014504b3e", "mdputilisateur", "mdputilisateur");
 		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
 	}	
 
@@ -110,16 +110,16 @@ public class PasserelleServiceWebXMLTest {
 	public void testEnvoyerPosition() throws ParseException {
 		Date laDate = Outils.convertirEnDateHeure("24/01/2018 13:42:21");
 		PointDeTrace lePoint = new PointDeTrace(23, 0, 48.15, -1.68, 50, laDate, 80);
-		String msg = PasserelleServicesWebXML.envoyerPosition("europa", Outils.sha1("mdputilisateurrrrrr"), lePoint);
+		String msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014b3e", lePoint);
 		assertEquals("Erreur : authentification incorrecte.", msg);
 		lePoint = new PointDeTrace(2333, 0, 48.15, -1.68, 50, laDate, 80);
-		msg = PasserelleServicesWebXML.envoyerPosition("europa", Outils.sha1("mdputilisateur"), lePoint);
+		msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014504b3e", lePoint);
 		assertEquals("Erreur : le numéro de trace n'existe pas.", msg);
 		lePoint = new PointDeTrace(22, 0, 48.15, -1.68, 50, laDate, 80);
-		msg = PasserelleServicesWebXML.envoyerPosition("europa", Outils.sha1("mdputilisateur"), lePoint);
+		msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014504b3e", lePoint);
 		assertEquals("Erreur : le numéro de trace ne correspond pas à cet utilisateur.", msg);
 		lePoint = new PointDeTrace(4, 0, 48.15, -1.68, 50, laDate, 80);
-		msg = PasserelleServicesWebXML.envoyerPosition("europa", Outils.sha1("mdputilisateur"), lePoint);
+		msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014504b3e", lePoint);
 		assertEquals("Point créé.", msg);
 	}
 

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,6 +24,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// attributs privés
 	private static String formatDateUS = "yyyy-MM-dd HH:mm:ss";
 
+	private static DateFormat df = new SimpleDateFormat(formatDateUS);
 	// Adresse de l'hébergeur Internet
 	// private static String _adresseHebergeur =
 	// "http://sio.lyceedelasalle.fr/tracegps/api/";
@@ -414,14 +417,19 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 		String reponse = "";
 		try { // création d'un nouveau document XML à partir de l'URL du service web et des
 				// paramètres
-			String urlDuServiceWeb = _adresseHebergeur + _urlSupprimerUnUtilisateur;
+			String urlDuServiceWeb = _adresseHebergeur + _urlEnvoyerPosition;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			urlDuServiceWeb += "&idTrace=" + lePoint.getIdTrace();
+			urlDuServiceWeb += "&dateHeure=" + df.format(lePoint.getDateHeure()).replace(" ", "%20");
+			urlDuServiceWeb += "&latitude=" + lePoint.getLatitude();
+			urlDuServiceWeb += "&longitude=" + lePoint.getLongitude();
+			urlDuServiceWeb += "&altitude=" + lePoint.getAltitude();
+			urlDuServiceWeb += "&rythmeCardio=" + lePoint.getRythmeCardio();
 			// urlDuServiceWeb += "&pseudoAsupprimer=" + pseudoAsupprimer;
 
 			// création d'un flux en lecture (InputStream) à partir du service
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
-
 			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à
 			// parcourir le flux XML
 			Document leDocument = getDocumentXML(unFluxEnLecture);

@@ -122,7 +122,7 @@ public class Outils {
 	 * @throws ParseException la chaine ne peut pas être convertie en date
 	 */
 	public static Date convertirEnDate(String uneChaineDate) throws ParseException {
-		SimpleDateFormat leFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat leFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{	return leFormat.parse(uneChaineDate);
 		}
