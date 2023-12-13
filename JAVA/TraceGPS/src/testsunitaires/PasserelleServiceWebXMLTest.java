@@ -85,17 +85,11 @@ public class PasserelleServiceWebXMLTest {
 		msg = PasserelleServicesWebXML.changerDeMdp("europa",
 				Outils.sha1("mdputilisateurrrr"), "passepasse", "passepasse");
 		assertEquals("Erreur : authentification incorrecte.", msg);
-<<<<<<< HEAD
-		msg = PasserelleServicesWebXML.changerDeMdp("europa", "13e3668bbee30b004380052b086457b014504b3e", "mdputilisateur", "mdputilisateur");
-		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
-		msg = PasserelleServicesWebXML.changerDeMdp("europa", "13e3668bbee30b004380052b086457b014504b3e", "mdputilisateur", "mdputilisateur");
-=======
 		msg = PasserelleServicesWebXML.changerDeMdp("europa",
 				Outils.sha1("mdputilisateur"), "mdputilisateurrrr", "mdputilisateurrrr");
 		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
 		msg = PasserelleServicesWebXML.changerDeMdp("europa",
 				Outils.sha1("mdputilisateurrrr"), "mdputilisateur", "mdputilisateur");
->>>>>>> be72169a22d14d647c9824c9b905b54f040340fa
 		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
 	}
 
@@ -147,10 +141,10 @@ public class PasserelleServiceWebXMLTest {
 	public void testEnvoyerPosition() throws ParseException {
 		Date laDate = Outils.convertirEnDateHeure("24/01/2018 13:42:21");
 		PointDeTrace lePoint = new PointDeTrace(23, 0, 48.15, -1.68, 50, laDate, 80);
-		String msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014b3e", lePoint);
+		String msg = PasserelleServicesWebXML.envoyerPosition("europa", Outils.sha1("mdputilisateur"), lePoint);
 		assertEquals("Erreur : authentification incorrecte.", msg);
 		lePoint = new PointDeTrace(2333, 0, 48.15, -1.68, 50, laDate, 80);
-		msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014504b3e", lePoint);
+		msg = PasserelleServicesWebXML.envoyerPosition("europa", Outils.sha1("mdputilisateur"), lePoint);
 		assertEquals("Erreur : le numéro de trace n'existe pas.", msg);
 		lePoint = new PointDeTrace(22, 0, 48.15, -1.68, 50, laDate, 80);
 		msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014504b3e", lePoint);
