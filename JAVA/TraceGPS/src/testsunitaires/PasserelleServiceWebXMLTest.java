@@ -17,7 +17,7 @@ import classes.Utilisateur;
 
 public class PasserelleServiceWebXMLTest {
 
-	// Il marche !
+	// Il marche ! (planchet)
 	@Test
 	public void testConnecter() {
 		String msg = PasserelleServicesWebXML.connecter("admin", "adminnnnnnnn");
@@ -28,7 +28,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Utilisateur authentifié.", msg);
 	}
 
-	// Il marche !
+	// Il marche ! (planchet)
 	@Test
 	public void testCreerUnUtilisateur() {
 		String msg = PasserelleServicesWebXML.creerUnUtilisateur("jim",
@@ -53,7 +53,7 @@ public class PasserelleServiceWebXMLTest {
 				msg);
 	}
 
-	// Il marche !
+	// Il marche ! (planchet)
 	@Test
 	public void testSupprimerUnUtilisateur() {
 		String msg;
@@ -93,7 +93,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
 	}
 
-	// Il marche !
+	// Il marche ! (ethan)
 	@Test
 	public void testDemanderMdp() {
 		String msg = PasserelleServicesWebXML.demanderMdp("jim");
@@ -137,6 +137,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Autorisation supprimée.", msg);
 	}
 
+	// Il marche ! (louis)
 	@Test
 	public void testEnvoyerPosition() throws ParseException {
 		Date laDate = Outils.convertirEnDateHeure("24/01/2018 13:42:21");
@@ -154,7 +155,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Point créé.", msg);
 	}
 
-	// Il marche !
+	// Il marche !(ethan)
 	@Test
 	public void testDemarrerEnregistrementParcours() {
 		Trace laTrace = new Trace();
