@@ -33,7 +33,7 @@ $dao = new DAO();
 // la fonction $_REQUEST récupère par défaut le contenu des variables $_GET, $_POST, $_COOKIE
 $pseudo = ( empty($this->request['pseudo'])) ? "" : $this->request['pseudo'];
 $mdpSha1 = ( empty($this->request['mdp'])) ? "" : $this->request['mdp'];
-$idTrace = (empty($this->request['idTrace'])) ? "" : $this->request['idTrace'];
+$idTrace = (empty($this->request['numeroTrace'])) ? "" : $this->request['numeroTrace'];
 $lang = ( empty($this->request['lang'])) ? "" : $this->request['lang'];
 
 // "xml" par défaut si le paramètre lang est absent ou incorrect
@@ -42,19 +42,19 @@ if ($lang != "json") $lang = "xml";
 // Contrôle de la présence des paramètres
 if ( $pseudo == "" || $mdpSha1 == "" || $idTrace == "" )
 {	$code_reponse = 401;
-	$msg = "Erreur : données incomplètes !";
+	$msg = "Erreur : données incomplètes.";
 }
 else
 {	if ( $dao->getNiveauConnexion($pseudo, $mdpSha1) == 0 )
     {   $code_reponse = 401;
-		$msg = "Erreur : authentification incorrecte !";
+		$msg = "Erreur : authentification incorrecte.";
     }
 	else 
 	{	// contrôle d'existence de idTrace
 	    $laTrace = $dao->getUneTrace($idTrace);
 	    if ($laTrace == null)
 	    {  	$code_reponse = 401;
-			$msg = "Erreur : parcours inexistant !";
+			$msg = "Erreur : parcours inexistant.";
 	    }
 	    else
 	    {   // récupération de l'id de l'utilisateur demandeur et du propriétaire du parcours
@@ -63,14 +63,14 @@ else
     	    
     	    if ( $idDemandeur != $idProprietaire )
     	    {   $code_reponse = 401;
-				$msg = "Erreur : vous n'êtes pas le propriétaire du parcours !";
+				$msg = "Erreur : vous n'êtes pas le propriétaire de ce parcours.";
     	    }
             else
             {   // suppression du parcours
                 $ok = $dao->supprimerUneTrace($idTrace);
                 if ( ! $ok ) {
                     $code_reponse = 401;
-					$msg = "Erreur : problème lors de la suppression du parcours !";
+					$msg = "Erreur : problème lors de la suppression du parcours.";
                 }
                 else {
                     $code_reponse = 200;

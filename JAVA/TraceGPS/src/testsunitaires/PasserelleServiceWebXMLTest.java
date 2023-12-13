@@ -182,6 +182,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Enregistrement terminé.", msg);
 	}
 
+	//il marche
 	@Test
 	public void testSupprimerUnUnParcours() {
 		String msg = PasserelleServicesWebXML.supprimerUnParcours("europa",
@@ -189,13 +190,14 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Erreur : authentification incorrecte.", msg);
 		msg = PasserelleServicesWebXML.supprimerUnParcours("europa",
 				Outils.sha1("mdputilisateur"), 100);
+				System.err.println(Outils.sha1("mdputilisateur"));
 		assertEquals("Erreur : parcours inexistant.", msg);
 		msg = PasserelleServicesWebXML.supprimerUnParcours("europa",
 				Outils.sha1("mdputilisateur"), 22);
 		assertEquals("Erreur : vous n'êtes pas le propriétaire de ce parcours.",
 				msg);
 		msg = PasserelleServicesWebXML.supprimerUnParcours("europa",
-				Outils.sha1("mdputilisateur"), 30);
+				Outils.sha1("mdputilisateur"), 3);
 		assertEquals("Parcours supprimé.", msg);
 	}
 
