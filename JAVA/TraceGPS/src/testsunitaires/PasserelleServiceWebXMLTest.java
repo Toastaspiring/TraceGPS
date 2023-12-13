@@ -28,7 +28,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Utilisateur authentifié.", msg);
 	}
 
-	// Il marche ! (planchet)
+	// Il marche ! (planchet + edit DAO)
 	@Test
 	public void testCreerUnUtilisateur() {
 		String msg = PasserelleServicesWebXML.creerUnUtilisateur("jim",
@@ -120,20 +120,15 @@ public class PasserelleServiceWebXMLTest {
 
 	@Test
 	public void testRetirerUneAutorisation() {
-		String msg = PasserelleServicesWebXML.retirerUneAutorisation("europa",
-				Outils.sha1("mdputilisateurrrrrr"), "toto", "coucou");
+		String msg = PasserelleServicesWebXML.retirerUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"), "toto", "coucou");
 		assertEquals("Erreur : authentification incorrecte.", msg);
-		msg = PasserelleServicesWebXML.retirerUneAutorisation("europa",
-				Outils.sha1("mdputilisateur"), "toto", "coucou");
+		msg = PasserelleServicesWebXML.retirerUneAutorisation("europa", Outils.sha1("mdputilisateur"), "toto", "coucou");
 		assertEquals("Erreur : pseudo utilisateur inexistant.", msg);
-		msg = PasserelleServicesWebXML.retirerUneAutorisation("europa",
-				Outils.sha1("mdputilisateur"), "juno", "coucou");
+		msg = PasserelleServicesWebXML.retirerUneAutorisation("europa", Outils.sha1("mdputilisateur"), "juno", "coucou");
 		assertEquals("Erreur : l'autorisation n'était pas accordée.", msg);
-		msg = PasserelleServicesWebXML.retirerUneAutorisation("neon",
-				Outils.sha1("mdputilisateur"), "oxygen", "coucou");
+		msg = PasserelleServicesWebXML.retirerUneAutorisation("neon", Outils.sha1("mdputilisateur"), "oxygen", "coucou");
 		assertEquals("Autorisation supprimée ; oxygen va recevoir un courriel de notification.", msg);
-		msg = PasserelleServicesWebXML.retirerUneAutorisation("neon",
-				Outils.sha1("mdputilisateur"), "photon", "");
+		msg = PasserelleServicesWebXML.retirerUneAutorisation("neon", Outils.sha1("mdputilisateur"), "photon", "");
 		assertEquals("Autorisation supprimée.", msg);
 	}
 
