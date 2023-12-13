@@ -237,7 +237,7 @@ class DAO
         $req1 = $this->cnx->prepare($txt_req1);
         // liaison de la requête et de ses paramètres
         $req1->bindValue("pseudo", mb_convert_encoding($unUtilisateur->getPseudo(), "ISO-8859-1"), \PDO::PARAM_STR);
-        $req1->bindValue("mdpSha1", mb_convert_encoding(sha1($unUtilisateur->getMdpsha1(), "ISO-8859-1"), "UTF-8"), \PDO::PARAM_STR);
+        $req1->bindValue("mdpSha1", sha1($unUtilisateur->getMdpsha1()), \PDO::PARAM_STR);
         $req1->bindValue("adrMail", mb_convert_encoding($unUtilisateur->getAdrmail(), "ISO-8859-1"), \PDO::PARAM_STR);
         $req1->bindValue("numTel", mb_convert_encoding($unUtilisateur->getNumTel(), "ISO-8859-1"), \PDO::PARAM_STR);
         $req1->bindValue("niveau", mb_convert_encoding($unUtilisateur->getNiveau(), "ISO-8859-1"), \PDO::PARAM_INT);
