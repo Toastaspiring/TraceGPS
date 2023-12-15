@@ -106,7 +106,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Vous allez recevoir un courriel avec votre nouveau mot de passe.", msg);
 	}
 
-	// Marche (Ethan)
+	// Marche (noah)
 	@Test
 	public void testDemanderUneAutorisation() {
 		String msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"),
