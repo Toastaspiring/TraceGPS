@@ -370,8 +370,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&texteMessage=" + texteMessage;
 			urlDuServiceWeb += "&nomPrenom=" + nomPrenom;
 
-			System.err.println(urlDuServiceWeb);
-
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
