@@ -96,7 +96,7 @@ else {
                     $code_reponse = 500;
                 }
                 else {
-                    $msg = $pseudoDestinataire."va recevoir un courriel avec votre demande";
+                    $msg = $pseudoDestinataire." va recevoir un courriel avec votre demande.";
                     $code_reponse = 200;
                 }
             }
