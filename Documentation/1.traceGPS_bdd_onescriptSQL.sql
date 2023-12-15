@@ -1,15 +1,15 @@
 
-DROP DATABASE IF EXISTS `AP-SIO2-traceGPS-2324_julien-preprod`;
-CREATE DATABASE `AP-SIO2-traceGPS-2324_julien-preprod`
+DROP DATABASE IF EXISTS `tracegps`;
+CREATE DATABASE `tracegps`
   CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 DROP USER tracegps@'localhost';
 CREATE USER tracegps@'localhost' IDENTIFIED BY 'spgecart';
-GRANT ALL ON `AP-SIO2-traceGPS-2324_julien-preprod`.* TO tracegps@'localhost' ;
+GRANT ALL ON `tracegps`.* TO tracegps@'localhost' ;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
-USE `AP-SIO2-traceGPS-2324_julien-preprod`;
+USE `tracegps`;
 
 DROP TABLE IF EXISTS tracegps_utilisateurs;
 CREATE TABLE IF NOT EXISTS tracegps_utilisateurs (
