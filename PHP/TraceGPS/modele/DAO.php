@@ -999,20 +999,18 @@ class DAO
         
         // préparation de la requête
         if ($uneTrace->getDateHeureFin() == null) {
-            $txt_req1 = "insert into tracegps_traces (id, dateDebut, dateFin, terminee, idUtilisateur)";
-            $txt_req1 .= " values (:id, :dateHeureDebut, NULL, :terminee, :idUtilisateur)";
+            $txt_req1 = "insert into tracegps_traces (dateDebut, dateFin, terminee, idUtilisateur)";
+            $txt_req1 .= " values (:dateHeureDebut, NULL, :terminee, :idUtilisateur)";
             $req1 = $this->cnx->prepare($txt_req1);
             // liaison de la requête et de ses paramètres
-            $req1->bindValue("id", mb_convert_encoding($uneTrace->getId(), "UTF-8"), \PDO::PARAM_INT);
             $req1->bindValue("dateHeureDebut", mb_convert_encoding($uneTrace->getDateHeureDebut(), "UTF-8"), \PDO::PARAM_STR);
             $req1->bindValue("terminee", mb_convert_encoding($uneTrace->getTerminee(), "UTF-8"), \PDO::PARAM_STR);
             $req1->bindValue("idUtilisateur", mb_convert_encoding($uneTrace->getIdUtilisateur(), "UTF-8"), \PDO::PARAM_INT);
         }else{
-            $txt_req1 = "insert into tracegps_traces (id, dateDebut, dateFin, terminee, idUtilisateur)";
-            $txt_req1 .= " values (:id, :dateHeureDebut, :dateHeureFin, :terminee, :idUtilisateur)";
+            $txt_req1 = "insert into tracegps_traces (dateDebut, dateFin, terminee, idUtilisateur)";
+            $txt_req1 .= " values (:dateHeureDebut, :dateHeureFin, :terminee, :idUtilisateur)";
             $req1 = $this->cnx->prepare($txt_req1);
             // liaison de la requête et de ses paramètres
-            $req1->bindValue("id", mb_convert_encoding($uneTrace->getId(), "UTF-8"), \PDO::PARAM_INT);
             $req1->bindValue("dateHeureDebut", mb_convert_encoding($uneTrace->getDateHeureDebut(), "UTF-8"), \PDO::PARAM_STR);
             $req1->bindValue("dateHeureFin", mb_convert_encoding($uneTrace->getDateHeureFin(), "UTF-8"), \PDO::PARAM_STR);
             $req1->bindValue("terminee", mb_convert_encoding($uneTrace->getTerminee(), "UTF-8"), \PDO::PARAM_STR);
