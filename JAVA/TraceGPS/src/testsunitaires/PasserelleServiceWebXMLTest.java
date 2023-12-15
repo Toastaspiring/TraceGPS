@@ -177,7 +177,7 @@ public class PasserelleServiceWebXMLTest {
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 230);
 		assertEquals("Erreur : parcours inexistant.", msg);
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 5);
-		// problème ici
+		// problème ici (surement du php)
 		assertEquals("Erreur : le numéro de trace ne correspond pas à cet utilisateur.", msg);
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 4);
 		assertEquals("Erreur : cette trace est déjà terminée.", msg);
