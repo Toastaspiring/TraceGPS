@@ -400,7 +400,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&pseudoARetirer=" + pseudoARetirer;
 			urlDuServiceWeb += "&texteMessage=" + texteMessage;
 			urlDuServiceWeb += "&lang=xml";
-			System.err.println(urlDuServiceWeb);
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
@@ -575,13 +574,13 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// pseudo : le pseudo de l'utilisateur qui fait appel au service web
 	// mdpSha1 : le mot de passe hashé en sha1
 	// idTrace : l'id de la trace à terminer
-	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int numeroTrace) {
+	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int idTrace){
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlArreterEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
+			urlDuServiceWeb += "&idTrace=" + idTrace;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
