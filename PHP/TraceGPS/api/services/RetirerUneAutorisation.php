@@ -45,7 +45,7 @@ if ($this->getMethodeRequete() != "GET")
 }
 else {
     // Les paramètres doivent être présents
-    if ( $pseudo == "" || $mdpSha1 == "" || $pseudoARetirer == "" || $texteMessage == "") {
+    if ( $pseudo == "" || $mdpSha1 == "" || $pseudoARetirer == "") {
         $msg = "Erreur : données incomplètes.";
         $code_reponse = 400;
     }
@@ -91,7 +91,7 @@ else {
         			    $code_reponse = 500;
         			}
         			else {
-            		    $msg = "Autorisation enregistrée. Le demandeur va recevoir un courriel de confirmation.";
+            		    $msg = "Autorisation supprimée ".$pseudoARetirer." va recevoir un courriel de notification.";
             		    $code_reponse = 200;
             		}
 
