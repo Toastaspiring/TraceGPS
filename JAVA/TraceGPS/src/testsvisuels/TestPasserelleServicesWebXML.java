@@ -30,7 +30,7 @@ public class TestPasserelleServicesWebXML {
 		for (Utilisateur unUtilisateur : lesUtilisateurs)
 		{ System.out.println(unUtilisateur.toString());
 		}
-		 */
+		*/
 		
 		/*
 		// test visuel de la méthode getLesUtilisateursQueJautorise
@@ -61,6 +61,7 @@ public class TestPasserelleServicesWebXML {
 		*/
 
 		/*
+		
 		// test visuel de la méthode getUnParcoursEtSesPoints 
 		Trace laTrace = new Trace(); 
 		msg = PasserelleServicesWebXML.getUnParcoursEtSesPoints("europa", Outils.sha1("mdputilisateur"), 2, laTrace); 
