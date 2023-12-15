@@ -544,14 +544,28 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemarrerEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			// Autres données à envoyer...
+
+			System.err.println(urlDuServiceWeb);
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
 			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
+			Element donnee = (Element) racine.getElementsByTagName("donnees").item(0);
+			if (donnee != null){
+				Element laTrace = (Element) donnee.getElementsByTagName("trace").item(0);
+				String id = laTrace.getElementsByTagName("id").item(0).getTextContent();
+				String dateHeureDebut = laTrace.getElementsByTagName("dateHeureDebut").item(0).getTextContent();
+				String terminee = laTrace.getElementsByTagName("terminee").item(0).getTextContent();
+				String idUtilisateur = laTrace.getElementsByTagName("idUtilisateur").item(0).getTextContent();
 
+				//asign Trace
+				trace.setId(Integer.valueOf(id));
+				trace.setDateHeureDebut(Outils.convertirEnDate(dateHeureDebut, "yyyy-MM-dd HH-mm-ss"));
+				trace.setTerminee(Boolean.parseBoolean(terminee));
+				trace.setIdUtilisateur(Integer.valueOf(idUtilisateur));
+			}
 			return reponse;
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
