@@ -360,7 +360,9 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// l'autorisation
 	// texteMessage : le texte d'un message accompagnant la demande
 	// nomPrenom : le nom et le prénom du demandeur
-	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire, String texteMessage, String nomPrenom) {
+
+	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String 
+pseudoDestinataire, String texteMessage, String nomPrenom) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemanderUneAutorisation;
@@ -370,7 +372,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&texteMessage=" + texteMessage;
 			urlDuServiceWeb += "$nomPrenom" + nomPrenom;
 			urlDuServiceWeb += "&lang=xml";
-
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -516,8 +517,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
 
-			System.err.println(urlDuServiceWeb);
-
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
@@ -544,8 +543,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemarrerEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-
-			System.err.println(urlDuServiceWeb);
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
