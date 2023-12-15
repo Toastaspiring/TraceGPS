@@ -369,9 +369,9 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoDestinataire;
 			urlDuServiceWeb += "&texteMessage=" + texteMessage;
-			urlDuServiceWeb += "$nomPrenom" + nomPrenom;
+			urlDuServiceWeb += "&nomPrenom=" + nomPrenom;
 			urlDuServiceWeb += "&lang=xml";
-
+			System.err.println(urlDuServiceWeb);
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
