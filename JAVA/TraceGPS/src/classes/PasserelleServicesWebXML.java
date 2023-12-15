@@ -387,13 +387,12 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&texteMessage=" + texteMessage;
 			urlDuServiceWeb += "$lang=xml";
 
-			System.out.print(urlDuServiceWeb);
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
 			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
-
+			System.out.println(reponse);
 			return reponse;
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
@@ -454,6 +453,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			// urlDuServiceWeb += "&pseudoAsupprimer=" + pseudoAsupprimer;
 
 			// création d'un flux en lecture (InputStream) à partir du service
+			System.err.println(urlDuServiceWeb);
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à
 			// parcourir le flux XML
