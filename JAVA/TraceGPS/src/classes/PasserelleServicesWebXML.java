@@ -453,7 +453,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			// urlDuServiceWeb += "&pseudoAsupprimer=" + pseudoAsupprimer;
 
 			// création d'un flux en lecture (InputStream) à partir du service
-			System.err.println(urlDuServiceWeb);
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à
 			// parcourir le flux XML
@@ -533,8 +532,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
 
-			System.err.println(urlDuServiceWeb);
-
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
@@ -561,8 +558,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemarrerEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-
-			System.err.println(urlDuServiceWeb);
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
