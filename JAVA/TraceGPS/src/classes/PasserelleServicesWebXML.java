@@ -410,7 +410,8 @@ pseudoDestinataire, String texteMessage, String nomPrenom) {
 	// pseudoARetirer : le pseudo de l'utilisateur à qui on veut retirer
 	// l'autorisation
 	// texteMessage : le texte d'un message pour un éventuel envoi de courriel
-	public static String retirerUneAutorisation(String pseudo, String mdpSha1, String pseudoARetirer, String texteMessage) {
+	public static String retirerUneAutorisation(String pseudo, String mdpSha1, String 
+pseudoARetirer, String texteMessage) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlRetirerUneAutorisation;
