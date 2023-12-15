@@ -298,7 +298,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 			// retour de la réponse du service web
 			return reponse;
-
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
 			return msg;
@@ -398,8 +397,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlRetirerUneAutorisation;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&pseudoARetirer=" + pseudoARetirer;
-			urlDuServiceWeb += "&texteMessage=" + texteMessage;
+			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoARetirer;
+			urlDuServiceWeb += "&texte=" + texteMessage;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -565,13 +564,13 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// pseudo : le pseudo de l'utilisateur qui fait appel au service web
 	// mdpSha1 : le mot de passe hashé en sha1
 	// idTrace : l'id de la trace à terminer
-	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int idTrace) {
+	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int numeroTrace) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlArreterEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&idTrace=" + idTrace;
+			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
