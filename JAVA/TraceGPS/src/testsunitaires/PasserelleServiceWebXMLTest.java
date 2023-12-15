@@ -132,8 +132,8 @@ public class PasserelleServiceWebXMLTest {
 		msg = PasserelleServicesWebXML.retirerUneAutorisation("europa", Outils.sha1("mdputilisateur"), "juno", "coucou");
 		assertEquals("Erreur : l'autorisation n'était pas accordée.", msg);
 		msg = PasserelleServicesWebXML.retirerUneAutorisation("neon", Outils.sha1("mdputilisateur"), "oxygen", "coucou");
-		assertEquals("Autorisation supprimée ; oxygen va recevoir un courriel de notification.", msg);
 		// problème ici
+		assertEquals("Autorisation supprimée ; oxygen va recevoir un courriel de notification.", msg);
 		msg = PasserelleServicesWebXML.retirerUneAutorisation("neon", Outils.sha1("mdputilisateur"), "photon", "");
 		assertEquals("Autorisation supprimée.", msg);
 	}
