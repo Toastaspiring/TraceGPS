@@ -298,7 +298,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 			// retour de la réponse du service web
 			return reponse;
-
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
 			return msg;
@@ -347,26 +346,10 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// mdpSha1 : le mot de passe hashé en sha1
 	// lesUtilisateurs : collection (vide) à remplir à partir des données fournies
 	// par le service web
-	public static String getLesUtilisateursQuiMautorisent(String pseudo, String mdpSha1, ArrayList<Utilisateur> lesUtilisateurs) {
-		String reponse = "";
-		try {
-			String urlDuServiceWeb = _adresseHebergeur + _urlGetLesUtilisateursQuiMautorisent;
-			urlDuServiceWeb += "?pseudo=" + pseudo;
-			urlDuServiceWeb += "&mdp=" + mdpSha1;
-	
-			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
-			Document leDocument = getDocumentXML(unFluxEnLecture);
-	
-			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
-			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
-	
-			return reponse;
-		} catch (Exception ex) {
-			String msg = "Erreur : " + ex.getMessage();
-			return msg;
-		}
+	public static String getLesUtilisateursQuiMautorisent(String pseudo, String mdpSha1,
+			ArrayList<Utilisateur> lesUtilisateurs) {
+		return ""; // METHODE A CREER ET TESTER
 	}
-	
 
 	// Méthode statique pour demander une autorisation (service
 	// DemanderUneAutorisation)
@@ -377,8 +360,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// l'autorisation
 	// texteMessage : le texte d'un message accompagnant la demande
 	// nomPrenom : le nom et le prénom du demandeur
-	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String 
-pseudoDestinataire, String texteMessage, String nomPrenom) {
+
+	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire, String texteMessage, String nomPrenom) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemanderUneAutorisation;
@@ -386,15 +369,14 @@ pseudoDestinataire, String texteMessage, String nomPrenom) {
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoDestinataire;
 			urlDuServiceWeb += "&texteMessage=" + texteMessage;
-			urlDuServiceWeb += "&nomPrenom=" + nomPrenom;
-			urlDuServiceWeb += "$lang=xml";
+			urlDuServiceWeb += "$nomPrenom" + nomPrenom;
+			urlDuServiceWeb += "&lang=xml";
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
 			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
-			System.out.println(reponse);
 			return reponse;
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
@@ -417,8 +399,8 @@ pseudoARetirer, String texteMessage) {
 			String urlDuServiceWeb = _adresseHebergeur + _urlRetirerUneAutorisation;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&pseudoARetirer=" + pseudoARetirer;
-			urlDuServiceWeb += "&texteMessage=" + texteMessage;
+			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoARetirer;
+			urlDuServiceWeb += "&texte=" + texteMessage;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -594,13 +576,13 @@ pseudoARetirer, String texteMessage) {
 	// pseudo : le pseudo de l'utilisateur qui fait appel au service web
 	// mdpSha1 : le mot de passe hashé en sha1
 	// idTrace : l'id de la trace à terminer
-	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int idTrace) {
+	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int numeroTrace) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlArreterEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&idTrace=" + idTrace;
+			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
