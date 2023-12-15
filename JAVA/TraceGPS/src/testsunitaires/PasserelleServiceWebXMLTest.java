@@ -150,8 +150,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Point créé.", msg);
 	}
 
-	// Il marche !(ethan coucou)
-	// coucou
+	// Il marche !(ethan)
 	@Test
 	public void testDemarrerEnregistrementParcours() {
 		Trace laTrace = new Trace();
