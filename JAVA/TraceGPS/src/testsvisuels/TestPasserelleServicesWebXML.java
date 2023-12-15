@@ -16,21 +16,21 @@ public class TestPasserelleServicesWebXML {
 		
 		String msg;
 		
-		/*
+		
 		//	test visuel de la méthode getTousLesUtilisateurs
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
 		msg = PasserelleServicesWebXML.getTousLesUtilisateurs("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs);
 
 		//	affichage de la réponse
 		System.out.println(msg);
-			affichage du nombre d'utilisateurs
+		// affichage du nombre d'utilisateurs
 		System.out.println("Nombre d'utilisateurs : " + lesUtilisateurs.size());
 
 		//	affichage de tous les utilisateurs
 		for (Utilisateur unUtilisateur : lesUtilisateurs)
 		{ System.out.println(unUtilisateur.toString());
 		}
-		*/
+		
 		
 		/*
 		// test visuel de la méthode getLesUtilisateursQueJautorise

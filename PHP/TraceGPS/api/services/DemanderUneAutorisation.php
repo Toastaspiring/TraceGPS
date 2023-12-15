@@ -96,7 +96,7 @@ else {
                     $code_reponse = 500;
                 }
                 else {
-                    $msg = "Autorisation enregistrée.<br>Le demandeur va recevoir un courriel de confirmation.";
+                    $msg = $pseudoDestinataire." va recevoir un courriel avec votre demande.";
                     $code_reponse = 200;
                 }
             }
