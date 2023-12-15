@@ -298,6 +298,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 			// retour de la réponse du service web
 			return reponse;
+
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
 			return msg;
@@ -360,16 +361,15 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// l'autorisation
 	// texteMessage : le texte d'un message accompagnant la demande
 	// nomPrenom : le nom et le prénom du demandeur
-	public static String demanderUneAutorisation(String pseudoDemandeur, String mdpSha1, String pseudoDestinataire,
-			String texte, String nomPrenomDestinataire) {
+	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire, String texteMessage, String nomPrenom) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemanderUneAutorisation;
-			urlDuServiceWeb += "?pseudo=" + pseudoDemandeur;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoDestinataire;
-			urlDuServiceWeb += "&texte=" + texte;
-			urlDuServiceWeb += "&nomPrenomDestinataire=" + nomPrenomDestinataire;
+			urlDuServiceWeb += "&texteMessage=" + texteMessage;
+			urlDuServiceWeb += "&nomPrenom=" + nomPrenom;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -392,15 +392,14 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// pseudoARetirer : le pseudo de l'utilisateur à qui on veut retirer
 	// l'autorisation
 	// texteMessage : le texte d'un message pour un éventuel envoi de courriel
-	public static String retirerUneAutorisation(String pseudoDemandeur, String mdpSha1, String pseudoDestinataire,
-			String texte) {
+	public static String retirerUneAutorisation(String pseudo, String mdpSha1, String pseudoARetirer, String texteMessage) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlRetirerUneAutorisation;
-			urlDuServiceWeb += "?pseudo=" + pseudoDemandeur;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&pseudoDestinataire=" + pseudoDestinataire;
-			urlDuServiceWeb += "&texte=" + texte;
+			urlDuServiceWeb += "&pseudoARetirer=" + pseudoARetirer;
+			urlDuServiceWeb += "&texteMessage=" + texteMessage;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -563,7 +562,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 				//asign Trace
 				trace.setId(Integer.valueOf(id));
-				trace.setDateHeureDebut(Outils.convertirEnDate(dateHeureDebut, "yyyy-MM-dd HH:mm:ss"));
+				trace.setDateHeureDebut(Outils.convertirEnDate(dateHeureDebut, "yyyy-MM-dd HH-mm-ss"));
 				trace.setTerminee(Boolean.parseBoolean(terminee));
 				trace.setIdUtilisateur(Integer.valueOf(idUtilisateur));
 			}
@@ -580,13 +579,13 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// pseudo : le pseudo de l'utilisateur qui fait appel au service web
 	// mdpSha1 : le mot de passe hashé en sha1
 	// idTrace : l'id de la trace à terminer
-	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int numeroTrace) {
+	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int idTrace) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlArreterEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
+			urlDuServiceWeb += "&idTrace=" + idTrace;
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
