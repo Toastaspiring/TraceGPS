@@ -106,6 +106,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Vous allez recevoir un courriel avec votre nouveau mot de passe.", msg);
 	}
 
+	// Marche (Ethan)
 	@Test
 	public void testDemanderUneAutorisation() {
 		String msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"),
@@ -113,7 +114,6 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Erreur : données incomplètes.", msg);
 		msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"), "toto",
 				"coucou", "charles-edouard");
-		// problème ici
 		assertEquals("Erreur : authentification incorrecte.", msg);
 		msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateur"), "toto",
 				"coucou", "charles-edouard");
