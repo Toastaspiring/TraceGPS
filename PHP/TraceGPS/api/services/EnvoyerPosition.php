@@ -88,7 +88,8 @@ else {
                         $donnees = [];
                     }
                     else{
-                        $unPointDeTrace = new PointDeTrace($idTrace, $unID, $uneLatitude, $uneLongitude, $uneAltitude, $uneDateHeure, $unRythmeCardio, null, null, null);
+                        $unID = $dao->getUneTrace($idTrace)->getNombrePoints() + 1;
+                        $unPointDeTrace = new PointDeTrace($idTrace, $unID, $latitude, $longitude, $altitude, $dateHeure, $rythmeCardio, null, null, null);
                         $ok = $dao->creerUnPointDeTrace($unPointDeTrace);
                         $donnees = array(
                             "id" => $unPointDeTrace->getId()
