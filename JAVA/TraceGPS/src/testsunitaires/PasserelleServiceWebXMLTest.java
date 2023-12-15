@@ -113,10 +113,10 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Erreur : données incomplètes.", msg);
 		msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"), "toto",
 				"coucou", "charles-edouard");
+		// problème ici
 		assertEquals("Erreur : authentification incorrecte.", msg);
 		msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateur"), "toto",
 				"coucou", "charles-edouard");
-		// problème ici
 		assertEquals("Erreur : pseudo utilisateur inexistant.", msg);
 		msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateur"), "galileo",
 				"coucou", "charles-edouard");
