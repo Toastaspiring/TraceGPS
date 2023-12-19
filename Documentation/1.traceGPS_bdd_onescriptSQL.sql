@@ -1,16 +1,15 @@
-
 DROP DATABASE IF EXISTS `tracegps`;
 CREATE DATABASE `tracegps`
   CHARACTER SET utf8 COLLATE utf8_general_ci;
-
+ 
 DROP USER tracegps@'localhost';
 CREATE USER tracegps@'localhost' IDENTIFIED BY 'spgecart';
 GRANT ALL ON `tracegps`.* TO tracegps@'localhost' ;
-
+ 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-
+ 
 USE `tracegps`;
-
+ 
 DROP TABLE IF EXISTS tracegps_utilisateurs;
 CREATE TABLE IF NOT EXISTS tracegps_utilisateurs (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -23,16 +22,16 @@ CREATE TABLE IF NOT EXISTS tracegps_utilisateurs (
   PRIMARY KEY (id),
   UNIQUE KEY pseudo (pseudo)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
+ 
+ 
 DROP TABLE IF EXISTS tracegps_autorisations;
 CREATE TABLE IF NOT EXISTS tracegps_autorisations (
   idAutorisant int(11) NOT NULL,
   idAutorise int(11) NOT NULL,
   PRIMARY KEY (idAutorisant,idAutorise)
 ) ENGINE=InnoDB Default charset=UTF8;
-
-
+ 
+ 
 DROP TABLE IF EXISTS tracegps_traces;
 CREATE TABLE IF NOT EXISTS tracegps_traces (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -42,8 +41,8 @@ CREATE TABLE IF NOT EXISTS tracegps_traces (
   idUtilisateur int(11) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
+ 
+ 
 DROP TABLE IF EXISTS tracegps_points;
 CREATE TABLE IF NOT EXISTS tracegps_points (
   idTrace int(11) NOT NULL,
@@ -55,15 +54,15 @@ CREATE TABLE IF NOT EXISTS tracegps_points (
   rythmeCardio int(3) NOT NULL,
   PRIMARY KEY (idTrace,id)
 ) ENGINE=InnoDB Default charset=UTF8;
-
-
+ 
+ 
 Alter table tracegps_autorisations add constraint fkuser1 foreign key (idAutorisant) references tracegps_utilisateurs(id) ;
 Alter table tracegps_autorisations add constraint fkuser2 foreign key (idAutorise) references tracegps_utilisateurs(id) ;
 Alter table tracegps_traces add constraint fkuser3 foreign key (idUtilisateur) references tracegps_utilisateurs(id) ;
 Alter table tracegps_points add constraint fktrace foreign key (idTrace) references tracegps_traces(id) ;
-
+ 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-
+ 
 INSERT INTO tracegps_utilisateurs (id, pseudo, mdpSha1, adrMail, numTel, niveau) VALUES
 (1, 'admin', 'ff9fff929a1292db1c00e3142139b22ee4925177', 'delasalle.sio.eleves@gmail.com', '11.22.33.44.55', 2),
 (2, 'callisto', '13e3668bbee30b004380052b086457b014504b3e', 'delasalle.sio.eleves@gmail.com', '22.33.44.55.66', 1),
@@ -78,7 +77,7 @@ INSERT INTO tracegps_utilisateurs (id, pseudo, mdpSha1, adrMail, numTel, niveau)
 (11, 'neon', '13e3668bbee30b004380052b086457b014504b3e', 'delasalle.sio.eleves@gmail.com', '44.55.66.77.88', 1),
 (12, 'oxygen', '13e3668bbee30b004380052b086457b014504b3e', 'delasalle.sio.eleves@gmail.com', '44.55.66.77.88', 1),
 (13, 'photon', '13e3668bbee30b004380052b086457b014504b3e', 'delasalle.sio.eleves@gmail.com', '44.55.66.77.88', 1);
-
+ 
 INSERT INTO tracegps_autorisations (idAutorisant, idAutorise) VALUES
 (2, 3),
 (2, 4),
@@ -100,7 +99,7 @@ INSERT INTO tracegps_autorisations (idAutorisant, idAutorise) VALUES
 (10, 12),
 (11, 12),
 (11, 13);
-
+ 
 INSERT INTO tracegps_traces (id, dateDebut, dateFin, terminee, idUtilisateur) VALUES
 (1, '2018-01-19 13:08:48', NULL, 0, 2),
 (2, '2018-01-19 13:08:48', '2018-01-19 13:11:48', 1, 2),
@@ -124,7 +123,7 @@ INSERT INTO tracegps_traces (id, dateDebut, dateFin, terminee, idUtilisateur) VA
 (20, '2018-01-19 13:08:48', '2018-01-19 13:11:48', 1, 11),
 (21, '2018-01-19 13:08:48', NULL, 0, 12),
 (22, '2018-01-19 13:08:48', '2018-01-19 13:11:48', 1, 12);
-
+ 
 INSERT INTO tracegps_points (idTrace, id, latitude, longitude, altitude, dateHeure, rythmeCardio) VALUES
 (1, 1, 48.2109, -1.5535, 60, '2018-01-19 13:08:48', 81),
 (1, 2, 48.2119, -1.5525, 70, '2018-01-19 13:09:08', 82),
@@ -291,13 +290,13 @@ INSERT INTO tracegps_points (idTrace, id, latitude, longitude, altitude, dateHeu
 (22, 8, 48.2179, -1.5465, 130, '2018-01-19 13:11:08', 88),
 (22, 9, 48.2189, -1.5455, 140, '2018-01-19 13:11:28', 89),
 (22, 10, 48.2199, -1.5445, 150, '2018-01-19 13:11:48', 90);
-
+ 
 CREATE OR REPLACE VIEW tracegps_vue_utilisateurs (id, pseudo, mdpSha1, adrMail, numTel, niveau, dateCreation, nbTraces, dateDerniereTrace) AS
 SELECT tracegps_utilisateurs.id, pseudo, mdpSha1, adrMail, numTel, niveau, dateCreation, count(tracegps_traces.id), max(dateDebut)
 FROM tracegps_utilisateurs left join tracegps_traces ON tracegps_utilisateurs.id = tracegps_traces.idUtilisateur
 GROUP BY id, pseudo, mdpsha1, adrmail, numtel, niveau, dateCreation
 ORDER BY pseudo ;
-
+ 
 CREATE OR REPLACE VIEW tracegps_vue_traces (id, dateDebut, dateFin, terminee, idUtilisateur, pseudo, nbPoints) AS
 SELECT tracegps_traces.id, dateDebut, dateFin, terminee, idUtilisateur, pseudo, count(tracegps_points.id)
 FROM (tracegps_traces INNER JOIN tracegps_utilisateurs ON tracegps_traces.idUtilisateur = tracegps_utilisateurs.id)
