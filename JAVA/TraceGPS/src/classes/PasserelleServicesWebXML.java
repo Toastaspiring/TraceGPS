@@ -576,31 +576,26 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// service web
 	public static String getUnParcoursEtSesPoints(String pseudo, String mdpSha1, int idTrace, Trace laTrace) {
 		String reponse = "";
-		try { // création d'un nouveau document XML à partir de l'URL du service web et des
-				// paramètres
-			String urlDuServiceWeb = _adresseHebergeur + _urlEnvoyerPosition;
+		try {
+			String urlDuServiceWeb = _adresseHebergeur + _urlGetUnParcoursEtSesPoints;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			urlDuServiceWeb += "&idTrace=" + laTrace.getId();
-			// urlDuServiceWeb += "&pseudoAsupprimer=" + pseudoAsupprimer;
-
-			// création d'un flux en lecture (InputStream) à partir du service
+			urlDuServiceWeb += "&idTrace=" + idTrace;
+	
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
-			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à
-			// parcourir le flux XML
 			Document leDocument = getDocumentXML(unFluxEnLecture);
-
-			// parsing du flux XML
+	
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
 			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
-
-			// retour de la réponse du service web
+	
+			// jsp
+	
 			return reponse;
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
 			return msg;
 		}
-	}
+	}	
 
 	// Méthode statique pour obtenir la liste des parcours d'un utilisateur (service
 	// GetLesParcoursDunUtilisateur)
@@ -610,9 +605,27 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// idUtilisateur : l'id de l'utilisateur dont on veut la liste des parcours
 	// lesTraces : collection (vide) à remplir à partir des données fournies par le
 	// service web
-	public static String getLesParcoursDunUtilisateur(String pseudo, String mdpSha1, String pseudoConsulte,
-			ArrayList<Trace> lesTraces) {
-		return ""; // METHODE A CREER ET TESTER
+	public static String getLesParcoursDunUtilisateur(String pseudo, String mdpSha1, String pseudoConsulte, ArrayList<Trace> lesTraces) {
+		String reponse = "";
+		try {
+			String urlDuServiceWeb = _adresseHebergeur + _urlGetLesParcoursDunUtilisateur;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
+			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			urlDuServiceWeb += "&pseudoConsulte=" + pseudoConsulte;
+	
+			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
+			Document leDocument = getDocumentXML(unFluxEnLecture);
+	
+			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
+			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
+
+			//la jsp
+	
+			return reponse;
+		} catch (Exception ex) {
+			String msg = "Erreur : " + ex.getMessage();
+			return msg;
+		}
 	}
 
 	// Méthode statique pour supprimer un parcours (service SupprimerUnParcours)

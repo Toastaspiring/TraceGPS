@@ -46,7 +46,7 @@ public class TestPasserelleServicesWebXML {
 		}
  		*/
 
-
+		/*
 		// test visuel de la méthode getLesUtilisateursQuiMautorisent 
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>(); 
 		msg = PasserelleServicesWebXML.getLesUtilisateursQuiMautorisent("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs); 
@@ -58,7 +58,7 @@ public class TestPasserelleServicesWebXML {
 		for (Utilisateur unUtilisateur : lesUtilisateurs) 
 		{ System.out.println(unUtilisateur.toString()); 
 		}
-		
+		*/
 		
 		/* marche pas
 		// test visuel de la méthode getUnParcoursEtSesPoints 
@@ -70,7 +70,7 @@ public class TestPasserelleServicesWebXML {
 		System.out.println(laTrace.toString());
 		*/
 		
-		/* marche pas
+		
 		// test visuel de la méthode getLesParcoursDunUtilisateur 
 		ArrayList<Trace> lesTraces = new ArrayList<Trace>(); 
 		msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa", Outils.sha1("mdputilisateur"), 
@@ -83,7 +83,7 @@ public class TestPasserelleServicesWebXML {
 		for (Trace uneTrace : lesTraces) 
 		{ System.out.println(uneTrace.toString()); 
 		} 
-		*/
+		
 	
 	} // fin Main
 } // fin class
