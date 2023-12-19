@@ -181,7 +181,7 @@ public class PasserelleServiceWebXMLTest {
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 5);
 		// problème ici
 		assertEquals("Erreur : le numéro de trace ne correspond pas à cet utilisateur.", msg);
-		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 4);
+		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 3);
 		assertEquals("Erreur : cette trace est déjà terminée.", msg);
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 23);
 		assertEquals("Enregistrement terminé.", msg);
