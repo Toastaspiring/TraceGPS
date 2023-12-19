@@ -391,9 +391,77 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// mdpSha1 : le mot de passe hashé en sha1
 	// lesUtilisateurs : collection (vide) à remplir à partir des données fournies
 	// par le service web
-	public static String getLesUtilisateursQuiMautorisent(String pseudo, String mdpSha1,
-			ArrayList<Utilisateur> lesUtilisateurs) {
-		return ""; // METHODE A CREER ET TESTER
+	public static String getLesUtilisateursQuiMautorisent(String pseudo, String mdpSha1, ArrayList<Utilisateur> lesUtilisateurs) {
+		String reponse = "";
+		try { // création d'un nouveau document XML à partir de l'URL du service web et des
+				// paramètres
+			String urlDuServiceWeb = _adresseHebergeur + _urlGetLesUtilisateursQuiMautorisent;
+			urlDuServiceWeb += "?pseudo=" + pseudo;
+			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			
+			System.out.println(urlDuServiceWeb);
+
+			// création d'un flux en lecture (InputStream) à partir du service
+			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
+			Document leDocument = getDocumentXML(unFluxEnLecture);
+
+			// parsing du flux XML
+			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
+			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
+
+			NodeList listeNoeudsUtilisateurs = leDocument.getElementsByTagName("utilisateur");
+			/*
+			 * Exemple de données obtenues pour un utilisateur :
+			 * <utilisateur>
+			 * <id>2</id>
+			 * <pseudo>callisto</pseudo>
+			 * <adrMail>delasalle.sio.eleves@gmail.com</adrMail>
+			 * <numTel>22.33.44.55.66</numTel>
+			 * <niveau>1</niveau>
+			 * <dateCreation>2018-01-19 20:11:24</dateCreation>
+			 * <nbTraces>2</nbTraces>
+			 * <dateDerniereTrace>2018-01-19 13:08:48</dateDerniereTrace>
+			 * </utilisateur>
+			 */
+
+			// vider d'abord la collection avant de la remplir
+			lesUtilisateurs.clear();
+
+			// parcours de la liste des noeuds <utilisateur> et ajout dans la collection
+			// lesUtilisateurs
+			for (int i = 0; i <= listeNoeudsUtilisateurs.getLength() - 1; i++) { // création de l'élément courant à
+																					// chaque tour de boucle
+				Element courant = (Element) listeNoeudsUtilisateurs.item(i);
+
+				// lecture des balises intérieures
+				int unId = Integer.parseInt(courant.getElementsByTagName("id").item(0).getTextContent());
+				String unPseudo = courant.getElementsByTagName("pseudo").item(0).getTextContent();
+				String unMdpSha1 = ""; // par sécurité, on ne récupère pas le mot de passe
+				String uneAdrMail = courant.getElementsByTagName("adrMail").item(0).getTextContent();
+				String unNumTel = courant.getElementsByTagName("numTel").item(0).getTextContent();
+				int unNiveau = Integer.parseInt(courant.getElementsByTagName("niveau").item(0).getTextContent());
+				Date uneDateCreation = Outils.convertirEnDate(
+						courant.getElementsByTagName("dateCreation").item(0).getTextContent(), formatDateUS);
+				int unNbTraces = Integer.parseInt(courant.getElementsByTagName("nbTraces").item(0).getTextContent());
+				Date uneDateDerniereTrace = null;
+				if (unNbTraces > 0)
+					uneDateDerniereTrace = Outils.convertirEnDate(
+							courant.getElementsByTagName("dateDerniereTrace").item(0).getTextContent(), formatDateUS);
+
+				// crée un objet Utilisateur
+				Utilisateur unUtilisateur = new Utilisateur(unId, unPseudo, unMdpSha1, uneAdrMail, unNumTel, unNiveau,
+						uneDateCreation, unNbTraces, uneDateDerniereTrace);
+
+				// ajoute l'utilisateur à la collection lesUtilisateurs
+				lesUtilisateurs.add(unUtilisateur);
+			}
+
+			// retour de la réponse du service web
+			return reponse;
+		} catch (Exception ex) {
+			String msg = "Erreur : " + ex.getMessage();
+			return msg;
+		}
 	}
 
 	// Méthode statique pour demander une autorisation (service
