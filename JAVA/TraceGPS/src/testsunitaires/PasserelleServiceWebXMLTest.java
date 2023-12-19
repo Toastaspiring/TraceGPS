@@ -80,7 +80,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Suppression effectuée ; un courriel va être envoyé à l'utilisateur.", msg);
 	}
 
-	// Il marche ! (Ethan)
+	// Il marche !
 	@Test
 	public void testChangerDeMdp() {
 		String msg = PasserelleServicesWebXML.changerDeMdp("europa",
@@ -97,7 +97,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Enregistrement effectué ; vous allez recevoir un courriel de confirmation.", msg);
 	}
 
-	// Il marche ! (ethan)
+	// Il marche !
 	@Test
 	public void testDemanderMdp() {
 		String msg = PasserelleServicesWebXML.demanderMdp("jim");
@@ -106,7 +106,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Vous allez recevoir un courriel avec votre nouveau mot de passe.", msg);
 	}
 
-	// Marche (noah)
+	// Marche !
 	@Test
 	public void testDemanderUneAutorisation() {
 		String msg = PasserelleServicesWebXML.demanderUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"),
@@ -123,6 +123,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("galileo va recevoir un courriel avec votre demande.", msg);
 	}
 
+	// Il marche !
 	@Test
 	public void testRetirerUneAutorisation() {
 		String msg = PasserelleServicesWebXML.retirerUneAutorisation("europa", Outils.sha1("mdputilisateurrrrrr"), "toto", "coucou");
@@ -138,7 +139,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Autorisation supprimée photon va recevoir un courriel de notification.", msg);
 	}
 
-	
+	// Il marche !
 	@Test
 	public void testEnvoyerPosition() throws ParseException {
 		Date laDate = Outils.convertirEnDateHeure("24/01/2018 13:42:21");
@@ -153,11 +154,11 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Erreur : le numéro de trace ne correspond pas à cet utilisateur.", msg);
 		lePoint = new PointDeTrace(4, 0, 48.15, -1.68, 50, laDate, 80);
 		msg = PasserelleServicesWebXML.envoyerPosition("europa", "13e3668bbee30b004380052b086457b014504b3e", lePoint);
-		// problème ici
+		// si problème ici, remeter la nouvelle BDD
 		assertEquals("Point créé.", msg);
 	}
 
-	// Il marche ! (Ethan)
+	// Il marche !
 	@Test
 	public void testDemarrerEnregistrementParcours() {
 		Trace laTrace = new Trace();
@@ -169,6 +170,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Trace créée.", msg);
 	}
 
+	// Il marche pas !
 	@Test
 	public void testArreterEnregistrementParcours() {
 		String msg;
@@ -177,7 +179,7 @@ public class PasserelleServiceWebXMLTest {
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 230);
 		assertEquals("Erreur : parcours inexistant.", msg);
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 5);
-		// problème ici (surement du php)
+		// problème ici
 		assertEquals("Erreur : le numéro de trace ne correspond pas à cet utilisateur.", msg);
 		msg = PasserelleServicesWebXML.arreterEnregistrementParcours("europa", Outils.sha1("mdputilisateur"), 4);
 		assertEquals("Erreur : cette trace est déjà terminée.", msg);
@@ -185,7 +187,7 @@ public class PasserelleServiceWebXMLTest {
 		assertEquals("Enregistrement terminé.", msg);
 	}
 
-	
+	// Il marche pas !
 	@Test
 	public void testSupprimerUnUnParcours() {
 		String msg = PasserelleServicesWebXML.supprimerUnParcours("europa",
