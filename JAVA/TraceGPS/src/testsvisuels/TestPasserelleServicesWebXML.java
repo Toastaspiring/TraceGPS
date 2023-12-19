@@ -14,7 +14,7 @@ public class TestPasserelleServicesWebXML {
 
 	public static void main(String[] args) throws ParseException {
 		
-		String msg;
+		String msg; // le grarder pour tous les tests
 		// activer ou desactiver les comentaires pour tester 1 par 1 :
 		
 		//	test visuel de la méthode getTousLesUtilisateurs
@@ -75,7 +75,7 @@ public class TestPasserelleServicesWebXML {
 		// test visuel de la méthode getLesParcoursDunUtilisateur 
 		ArrayList<Trace> lesTraces = new ArrayList<Trace>(); 
 		msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa", Outils.sha1("mdputilisateur"), 
-	  "callisto", lesTraces); 
+	    "callisto", lesTraces); 
 		// affichage de la réponse 
 		System.out.println(msg); 
 		// affichage du nombre de traces 
