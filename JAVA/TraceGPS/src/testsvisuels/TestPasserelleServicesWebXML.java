@@ -14,18 +14,17 @@ public class TestPasserelleServicesWebXML {
 
 	public static void main(String[] args) throws ParseException {
 		
-		String msg;
+		String msg; // le grarder pour tous les tests
+		// activer ou desactiver les comentaires pour tester 1 par 1 :
 		
-		/*
+		
 		//	test visuel de la méthode getTousLesUtilisateurs
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
 		msg = PasserelleServicesWebXML.getTousLesUtilisateurs("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs);
-
 		//	affichage de la réponse
 		System.out.println(msg);
 		// affichage du nombre d'utilisateurs
 		System.out.println("Nombre d'utilisateurs : " + lesUtilisateurs.size());
-
 		//	affichage de tous les utilisateurs
 		for (Utilisateur unUtilisateur : lesUtilisateurs)
 		{ System.out.println(unUtilisateur.toString());
@@ -33,6 +32,7 @@ public class TestPasserelleServicesWebXML {
 		*/
 		
 		
+		/*
 		// test visuel de la méthode getLesUtilisateursQueJautorise
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
 		msg = PasserelleServicesWebXML.getLesUtilisateursQueJautorise("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs);
@@ -44,7 +44,7 @@ public class TestPasserelleServicesWebXML {
 		for (Utilisateur unUtilisateur : lesUtilisateurs)
 		{ System.out.println(unUtilisateur.toString());
 		}
- 		
+ 		*/
 
 		/*
 		// test visuel de la méthode getLesUtilisateursQuiMautorisent 
@@ -60,8 +60,7 @@ public class TestPasserelleServicesWebXML {
 		}
 		*/
 
-		/*
-		
+		/* marche pas
 		// test visuel de la méthode getUnParcoursEtSesPoints 
 		Trace laTrace = new Trace(); 
 		msg = PasserelleServicesWebXML.getUnParcoursEtSesPoints("europa", Outils.sha1("mdputilisateur"), 2, laTrace); 
@@ -71,11 +70,11 @@ public class TestPasserelleServicesWebXML {
 		System.out.println(laTrace.toString());
 		*/
 		
-		/*
+		/* marche pas
 		// test visuel de la méthode getLesParcoursDunUtilisateur 
 		ArrayList<Trace> lesTraces = new ArrayList<Trace>(); 
 		msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa", Outils.sha1("mdputilisateur"), 
-	  "callisto", lesTraces); 
+	    "callisto", lesTraces); 
 		// affichage de la réponse 
 		System.out.println(msg); 
 		// affichage du nombre de traces 

@@ -560,6 +560,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&numeroTrace=" + numeroTrace;
 
+			System.err.println(urlDuServiceWeb);
+
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 
@@ -586,6 +588,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemarrerEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -626,6 +629,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
 			urlDuServiceWeb += "&idTrace=" + idTrace;
+
+			System.err.println(urlDuServiceWeb);
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
