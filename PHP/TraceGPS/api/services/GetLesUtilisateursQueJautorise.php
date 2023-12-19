@@ -24,13 +24,12 @@ $dao = new DAO();
 
 // Récupération des données transmises
 $pseudo = (empty($this->request['pseudo'])) ? "" : $this->request['pseudo'];
-$lang = (empty($this->request['lang'])) ? "" : $this->request['lang'];
 $mdpSha1 = (empty($this->request['mdp'])) ? "" : $this->request['mdp'];
+$lang = (empty($this->request['lang'])) ? "" : $this->request['lang'];
 
 // "xml" par défaut si le paramètre lang est absent ou incorrect
-if ($lang != "json") {
-    $lang = "xml";
-}
+if ($lang != "json") $lang = "xml";
+
 // initialisation du nombre de réponses
 $nbReponses = 0;
 $lesUtilisateurs = array();
