@@ -452,7 +452,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			return msg;
 		}
 	}
-
+	
 	// Méthode statique pour obtenir un parcours et la liste de ses points (service
 	// GetUnParcoursEtSesPoints)
 	// La méthode doit recevoir 4 paramètres :
