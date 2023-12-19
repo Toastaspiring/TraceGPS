@@ -17,7 +17,8 @@ public class TestPasserelleServicesWebXML {
 		String msg; // le grarder pour tous les tests
 		// activer ou desactiver les comentaires pour tester 1 par 1 :
 		
-		
+
+		/* Marche
 		//	test visuel de la méthode getTousLesUtilisateurs
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
 		msg = PasserelleServicesWebXML.getTousLesUtilisateurs("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs);
@@ -31,8 +32,7 @@ public class TestPasserelleServicesWebXML {
 		}
 		*/
 		
-		
-		/*
+		// marche pas
 		// test visuel de la méthode getLesUtilisateursQueJautorise
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
 		msg = PasserelleServicesWebXML.getLesUtilisateursQueJautorise("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs);
@@ -44,9 +44,9 @@ public class TestPasserelleServicesWebXML {
 		for (Utilisateur unUtilisateur : lesUtilisateurs)
 		{ System.out.println(unUtilisateur.toString());
 		}
- 		*/
+ 		
 
-		/*
+		/* marche pas
 		// test visuel de la méthode getLesUtilisateursQuiMautorisent 
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>(); 
 		msg = PasserelleServicesWebXML.getLesUtilisateursQuiMautorisent("europa", Outils.sha1("mdputilisateur"), lesUtilisateurs); 
