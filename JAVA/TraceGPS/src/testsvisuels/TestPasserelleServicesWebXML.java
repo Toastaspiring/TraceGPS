@@ -15,7 +15,7 @@ public class TestPasserelleServicesWebXML {
 	public static void main(String[] args) throws ParseException {
 		
 		String msg;
-		
+		// activer ou desactiver les comentaires pour tester 1 par 1 :
 		
 		//	test visuel de la méthode getTousLesUtilisateurs
 		ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
