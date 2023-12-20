@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.prefs.NodeChangeEvent;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -575,7 +576,42 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// laTrace : objet Trace (vide) à remplir à partir des données fournies par le
 	// service web
 	public static String getUnParcoursEtSesPoints(String pseudo, String mdpSha1, int idTrace, Trace laTrace) {
-		String reponse = "";
+		/*	
+		<?xml version="1.0" encoding="UTF-8"?> 
+		<!--Service web GetUnParcoursEtSesPoints - BTS SIO - Lycée De La Salle - Rennes--> 
+		<data> 
+			<reponse>Données de la trace demandée.</reponse> 
+			<donnees> 
+				<trace> 
+					<id>2</id> 
+					<dateHeureDebut>2018-01-19 13:08:48</dateHeureDebut> 
+					<terminee>1</terminee> 
+					<dateHeureFin>2018-01-19 13:11:48</dateHeureFin> 
+					<idUtilisateur>2</idUtilisateur> 
+				</trace> 
+				<lesPoints> 
+					<point> 
+						<id>1</id> 
+						<latitude>48.2109</latitude> 
+						<longitude>-1.5535</longitude> 
+						<altitude>60</altitude> 
+						<dateHeure>2018-01-19 13:08:48</dateHeure> 
+						<rythmeCardio>81</rythmeCardio> 
+					</point> 
+					..................................................................................................... 
+					<point> 
+						<id>10</id> 
+						<latitude>48.2199</latitude> 
+						<longitude>-1.5445</longitude> 
+						<altitude>150</altitude> 
+						<dateHeure>2018-01-19 13:11:48</dateHeure> 
+						<rythmeCardio>90</rythmeCardio> 
+					</point> 
+				</lesPoints> 
+			</donnees> 
+		</data>
+		*/
+
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlGetUnParcoursEtSesPoints;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
@@ -585,11 +621,63 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
 	
+			//on décompose la structure XML
+			//<data>
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
-			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
-	
-			// jsp
-	
+			//<reponse>
+			String reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
+			//<donnees>
+			Element donnees = (Element) racine.getElementsByTagName("donnes").item(0);
+
+			//<donnees> est n'est pas tt le temps présente ( ex : erreur )
+			//on vérifie si <donnees> existe
+			if (donnees != null) {
+				//<trace>
+				Element TraceElement = (Element) donnees.getElementsByTagName("trace").item(0);
+				//<trace> parameter
+				int idTraceFetched = Integer.parseInt(TraceElement.getElementsByTagName("id").item(0).getTextContent());
+				Date dateHeuredebut = Outils.convertirEnDate(TraceElement.getElementsByTagName("dateHeureDebut").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
+				Date dateHeureFin = Outils.convertirEnDate(TraceElement.getElementsByTagName("dateHeureFin").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
+				int idUtilisateur = Integer.parseInt(TraceElement.getElementsByTagName("idUtilisateur").item(0).getTextContent());
+
+				int termineeInt = Integer.parseInt(TraceElement.getElementsByTagName("terminee").item(0).getTextContent());
+				boolean terminee;
+				if (termineeInt == 1){
+					terminee = true;
+				}else{
+					terminee = false;
+				}
+
+				NodeList listeNoeudsPointDeTrace = donnees.getElementsByTagName("lesPoints");
+
+				// parcours de la liste des noeuds <lesPoints> et ajout dans la collection
+				// lesPoints
+				for (int i = 0; i <= listeNoeudsPointDeTrace.getLength() - 1; i++) { // création de l'élément courant à
+																						// chaque tour de boucle
+					Element courant = (Element) listeNoeudsPointDeTrace.item(i);
+
+					// lecture des balises intérieures
+					int id = Integer.parseInt(courant.getElementsByTagName("id").item(0).getTextContent());
+					float latitude = Float.parseFloat((courant.getElementsByTagName("latitude").item(0).getTextContent()));
+					float longitude = Float.parseFloat((courant.getElementsByTagName("longitude").item(0).getTextContent()));
+					float altitude = Float.parseFloat((courant.getElementsByTagName("altitude").item(0).getTextContent()));
+					Date dateHeure = Outils.convertirEnDate(courant.getElementsByTagName("dateHeure").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
+					int rythmeCardio = Integer.parseInt(courant.getElementsByTagName("rythmeCardio").item(0).getTextContent());
+
+					//Creation du Points
+					PointDeTrace currentPoint = new PointDeTrace(idTrace, id, latitude, longitude, altitude, dateHeure, rythmeCardio);
+
+					laTrace.ajouterPoint(currentPoint);
+
+				}
+
+				laTrace.setId(idTraceFetched);
+				laTrace.setDateHeureDebut(dateHeuredebut);
+				laTrace.setDateHeureFin(dateHeureFin);
+				laTrace.setTerminee(terminee);
+				laTrace.setIdUtilisateur(idUtilisateur);
+			}
+
 			return reponse;
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();

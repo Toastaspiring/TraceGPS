@@ -60,7 +60,7 @@ public class TestPasserelleServicesWebXML {
 		}
 		*/
 		
-		/* marche pas
+		
 		// test visuel de la méthode getUnParcoursEtSesPoints 
 		Trace laTrace = new Trace(); 
 		msg = PasserelleServicesWebXML.getUnParcoursEtSesPoints("europa", Outils.sha1("mdputilisateur"), 2, laTrace); 
@@ -68,9 +68,9 @@ public class TestPasserelleServicesWebXML {
 		System.out.println(msg); 
 		// affichage de la trace 
 		System.out.println(laTrace.toString());
-		*/
 		
 		
+		/*
 		// test visuel de la méthode getLesParcoursDunUtilisateur 
 		ArrayList<Trace> lesTraces = new ArrayList<Trace>(); 
 		msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa", Outils.sha1("mdputilisateur"), 
@@ -83,7 +83,7 @@ public class TestPasserelleServicesWebXML {
 		for (Trace uneTrace : lesTraces) 
 		{ System.out.println(uneTrace.toString()); 
 		} 
-		
+		*/
 	
 	} // fin Main
 } // fin class
