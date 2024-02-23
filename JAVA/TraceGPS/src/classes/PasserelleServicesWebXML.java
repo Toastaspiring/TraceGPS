@@ -8,14 +8,13 @@
 
 package classes;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.prefs.NodeChangeEvent;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
+import org.junit.platform.engine.support.hierarchical.Node;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -312,14 +311,15 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// mdpSha1 : le mot de passe hashé en sha1
 	// lesUtilisateurs : collection (vide) à remplir à partir des données fournies
 	// par le service web
-	public static String getLesUtilisateursQueJautorise(String pseudo, String mdpSha1, ArrayList<Utilisateur> lesUtilisateurs) {
+	public static String getLesUtilisateursQueJautorise(String pseudo, String mdpSha1,
+			ArrayList<Utilisateur> lesUtilisateurs) {
 		String reponse = "";
 		try { // création d'un nouveau document XML à partir de l'URL du service web et des
 				// paramètres
 			String urlDuServiceWeb = _adresseHebergeur + _urlGetLesUtilisateursQueJautorise;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			
+
 			System.out.println(urlDuServiceWeb);
 
 			// création d'un flux en lecture (InputStream) à partir du service
@@ -392,14 +392,15 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// mdpSha1 : le mot de passe hashé en sha1
 	// lesUtilisateurs : collection (vide) à remplir à partir des données fournies
 	// par le service web
-	public static String getLesUtilisateursQuiMautorisent(String pseudo, String mdpSha1, ArrayList<Utilisateur> lesUtilisateurs) {
+	public static String getLesUtilisateursQuiMautorisent(String pseudo, String mdpSha1,
+			ArrayList<Utilisateur> lesUtilisateurs) {
 		String reponse = "";
 		try { // création d'un nouveau document XML à partir de l'URL du service web et des
 				// paramètres
 			String urlDuServiceWeb = _adresseHebergeur + _urlGetLesUtilisateursQuiMautorisent;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			
+
 			System.out.println(urlDuServiceWeb);
 
 			// création d'un flux en lecture (InputStream) à partir du service
@@ -475,7 +476,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// texteMessage : le texte d'un message accompagnant la demande
 	// nomPrenom : le nom et le prénom du demandeur
 
-	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire, String texteMessage, String nomPrenom) {
+	public static String demanderUneAutorisation(String pseudo, String mdpSha1, String pseudoDestinataire,
+			String texteMessage, String nomPrenom) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemanderUneAutorisation;
@@ -505,7 +507,8 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// pseudoARetirer : le pseudo de l'utilisateur à qui on veut retirer
 	// l'autorisation
 	// texteMessage : le texte d'un message pour un éventuel envoi de courriel
-	public static String retirerUneAutorisation(String pseudo, String mdpSha1, String pseudoARetirer, String texteMessage) {
+	public static String retirerUneAutorisation(String pseudo, String mdpSha1, String pseudoARetirer,
+			String texteMessage) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlRetirerUneAutorisation;
@@ -566,7 +569,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			return msg;
 		}
 	}
-	
+
 	// Méthode statique pour obtenir un parcours et la liste de ses points (service
 	// GetUnParcoursEtSesPoints)
 	// La méthode doit recevoir 4 paramètres :
@@ -576,75 +579,83 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// laTrace : objet Trace (vide) à remplir à partir des données fournies par le
 	// service web
 	public static String getUnParcoursEtSesPoints(String pseudo, String mdpSha1, int idTrace, Trace laTrace) {
-		/*	
-		<?xml version="1.0" encoding="UTF-8"?> 
-		<!--Service web GetUnParcoursEtSesPoints - BTS SIO - Lycée De La Salle - Rennes--> 
-		<data> 
-			<reponse>Données de la trace demandée.</reponse> 
-			<donnees> 
-				<trace> 
-					<id>2</id> 
-					<dateHeureDebut>2018-01-19 13:08:48</dateHeureDebut> 
-					<terminee>1</terminee> 
-					<dateHeureFin>2018-01-19 13:11:48</dateHeureFin> 
-					<idUtilisateur>2</idUtilisateur> 
-				</trace> 
-				<lesPoints> 
-					<point> 
-						<id>1</id> 
-						<latitude>48.2109</latitude> 
-						<longitude>-1.5535</longitude> 
-						<altitude>60</altitude> 
-						<dateHeure>2018-01-19 13:08:48</dateHeure> 
-						<rythmeCardio>81</rythmeCardio> 
-					</point> 
-					..................................................................................................... 
-					<point> 
-						<id>10</id> 
-						<latitude>48.2199</latitude> 
-						<longitude>-1.5445</longitude> 
-						<altitude>150</altitude> 
-						<dateHeure>2018-01-19 13:11:48</dateHeure> 
-						<rythmeCardio>90</rythmeCardio> 
-					</point> 
-				</lesPoints> 
-			</donnees> 
-		</data>
-		*/
+		/*
+		 * <?xml version="1.0" encoding="UTF-8"?>
+		 * <!--Service web GetUnParcoursEtSesPoints - BTS SIO - Lycée De La Salle -
+		 * Rennes-->
+		 * <data>
+		 * <reponse>Données de la trace demandée.</reponse>
+		 * <donnees>
+		 * <trace>
+		 * <id>2</id>
+		 * <dateHeureDebut>2018-01-19 13:08:48</dateHeureDebut>
+		 * <terminee>1</terminee>
+		 * <dateHeureFin>2018-01-19 13:11:48</dateHeureFin>
+		 * <idUtilisateur>2</idUtilisateur>
+		 * </trace>
+		 * <lesPoints>
+		 * <point>
+		 * <id>1</id>
+		 * <latitude>48.2109</latitude>
+		 * <longitude>-1.5535</longitude>
+		 * <altitude>60</altitude>
+		 * <dateHeure>2018-01-19 13:08:48</dateHeure>
+		 * <rythmeCardio>81</rythmeCardio>
+		 * </point>
+		 * .............................................................................
+		 * ........................
+		 * <point>
+		 * <id>10</id>
+		 * <latitude>48.2199</latitude>
+		 * <longitude>-1.5445</longitude>
+		 * <altitude>150</altitude>
+		 * <dateHeure>2018-01-19 13:11:48</dateHeure>
+		 * <rythmeCardio>90</rythmeCardio>
+		 * </point>
+		 * </lesPoints>
+		 * </donnees>
+		 * </data>
+		 */
 
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlGetUnParcoursEtSesPoints;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
-			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			urlDuServiceWeb += "&mdpSha1=" + mdpSha1;
 			urlDuServiceWeb += "&idTrace=" + idTrace;
-	
+
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
-	
-			//on décompose la structure XML
-			//<data>
+
+			// on décompose la structure XML
+			// <data>
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
-			//<reponse>
+			// <reponse>
 			String reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
-			//<donnees>
+			// <donnees>
 			Element donnees = (Element) racine.getElementsByTagName("donnes").item(0);
 
-			//<donnees> est n'est pas tt le temps présente ( ex : erreur )
-			//on vérifie si <donnees> existe
+			// <donnees> est n'est pas tt le temps présente ( ex : erreur )
+			// on vérifie si <donnees> existe
 			if (donnees != null) {
-				//<trace>
+				// <trace>
 				Element TraceElement = (Element) donnees.getElementsByTagName("trace").item(0);
-				//<trace> parameter
+				// <trace> parameter
 				int idTraceFetched = Integer.parseInt(TraceElement.getElementsByTagName("id").item(0).getTextContent());
-				Date dateHeuredebut = Outils.convertirEnDate(TraceElement.getElementsByTagName("dateHeureDebut").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
-				Date dateHeureFin = Outils.convertirEnDate(TraceElement.getElementsByTagName("dateHeureFin").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
-				int idUtilisateur = Integer.parseInt(TraceElement.getElementsByTagName("idUtilisateur").item(0).getTextContent());
+				Date dateHeuredebut = Outils.convertirEnDate(
+						TraceElement.getElementsByTagName("dateHeureDebut").item(0).getTextContent(),
+						"yyyy-MM-dd HH:mm:ss");
+				Date dateHeureFin = Outils.convertirEnDate(
+						TraceElement.getElementsByTagName("dateHeureFin").item(0).getTextContent(),
+						"yyyy-MM-dd HH:mm:ss");
+				int idUtilisateur = Integer
+						.parseInt(TraceElement.getElementsByTagName("idUtilisateur").item(0).getTextContent());
 
-				int termineeInt = Integer.parseInt(TraceElement.getElementsByTagName("terminee").item(0).getTextContent());
+				int termineeInt = Integer
+						.parseInt(TraceElement.getElementsByTagName("terminee").item(0).getTextContent());
 				boolean terminee;
-				if (termineeInt == 1){
+				if (termineeInt == 1) {
 					terminee = true;
-				}else{
+				} else {
 					terminee = false;
 				}
 
@@ -658,14 +669,20 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 
 					// lecture des balises intérieures
 					int id = Integer.parseInt(courant.getElementsByTagName("id").item(0).getTextContent());
-					float latitude = Float.parseFloat((courant.getElementsByTagName("latitude").item(0).getTextContent()));
-					float longitude = Float.parseFloat((courant.getElementsByTagName("longitude").item(0).getTextContent()));
-					float altitude = Float.parseFloat((courant.getElementsByTagName("altitude").item(0).getTextContent()));
-					Date dateHeure = Outils.convertirEnDate(courant.getElementsByTagName("dateHeure").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
-					int rythmeCardio = Integer.parseInt(courant.getElementsByTagName("rythmeCardio").item(0).getTextContent());
+					float latitude = Float
+							.parseFloat((courant.getElementsByTagName("latitude").item(0).getTextContent()));
+					float longitude = Float
+							.parseFloat((courant.getElementsByTagName("longitude").item(0).getTextContent()));
+					float altitude = Float
+							.parseFloat((courant.getElementsByTagName("altitude").item(0).getTextContent()));
+					Date dateHeure = Outils.convertirEnDate(
+							courant.getElementsByTagName("dateHeure").item(0).getTextContent(), "yyyy-MM-dd HH:mm:ss");
+					int rythmeCardio = Integer
+							.parseInt(courant.getElementsByTagName("rythmeCardio").item(0).getTextContent());
 
-					//Creation du Points
-					PointDeTrace currentPoint = new PointDeTrace(idTrace, id, latitude, longitude, altitude, dateHeure, rythmeCardio);
+					// Creation du Points
+					PointDeTrace currentPoint = new PointDeTrace(idTrace, id, latitude, longitude, altitude, dateHeure,
+							rythmeCardio);
 
 					laTrace.ajouterPoint(currentPoint);
 
@@ -683,7 +700,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String msg = "Erreur : " + ex.getMessage();
 			return msg;
 		}
-	}	
+	}
 
 	// Méthode statique pour obtenir la liste des parcours d'un utilisateur (service
 	// GetLesParcoursDunUtilisateur)
@@ -693,22 +710,27 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// idUtilisateur : l'id de l'utilisateur dont on veut la liste des parcours
 	// lesTraces : collection (vide) à remplir à partir des données fournies par le
 	// service web
-	public static String getLesParcoursDunUtilisateur(String pseudo, String mdpSha1, String pseudoConsulte, ArrayList<Trace> lesTraces) {
+	public static String getLesParcoursDunUtilisateur(String pseudo, String mdpSha1, String pseudoConsulte,
+			ArrayList<Trace> lesTraces) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlGetLesParcoursDunUtilisateur;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
-			urlDuServiceWeb += "&mdp=" + mdpSha1;
+			urlDuServiceWeb += "&mdpSha1=" + mdpSha1;
 			urlDuServiceWeb += "&pseudoConsulte=" + pseudoConsulte;
-	
+
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
-	
+
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
 			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
 
-			//la jsp
-	
+			// ici
+			// nodelist
+			// clear
+			// ajout d'un foreatch
+			// reponse
+
 			return reponse;
 		} catch (Exception ex) {
 			String msg = "Erreur : " + ex.getMessage();
@@ -757,7 +779,6 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			String urlDuServiceWeb = _adresseHebergeur + _urlDemarrerEnregistrementParcours;
 			urlDuServiceWeb += "?pseudo=" + pseudo;
 			urlDuServiceWeb += "&mdp=" + mdpSha1;
-			
 
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 			Document leDocument = getDocumentXML(unFluxEnLecture);
@@ -765,14 +786,14 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			Element racine = (Element) leDocument.getElementsByTagName("data").item(0);
 			reponse = racine.getElementsByTagName("reponse").item(0).getTextContent();
 			Element donnee = (Element) racine.getElementsByTagName("donnees").item(0);
-			if (donnee != null){
+			if (donnee != null) {
 				Element laTrace = (Element) donnee.getElementsByTagName("trace").item(0);
 				String id = laTrace.getElementsByTagName("id").item(0).getTextContent();
 				String dateHeureDebut = laTrace.getElementsByTagName("dateHeureDebut").item(0).getTextContent();
 				String terminee = laTrace.getElementsByTagName("terminee").item(0).getTextContent();
 				String idUtilisateur = laTrace.getElementsByTagName("idUtilisateur").item(0).getTextContent();
 
-				//asign Trace
+				// asign Trace
 				trace.setId(Integer.valueOf(id));
 				trace.setDateHeureDebut(Outils.convertirEnDate(dateHeureDebut, "yyyy-MM-dd HH-mm-ss"));
 				trace.setTerminee(Boolean.parseBoolean(terminee));
@@ -791,7 +812,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 	// pseudo : le pseudo de l'utilisateur qui fait appel au service web
 	// mdpSha1 : le mot de passe hashé en sha1
 	// idTrace : l'id de la trace à terminer
-	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int idTrace){
+	public static String arreterEnregistrementParcours(String pseudo, String mdpSha1, int idTrace) {
 		String reponse = "";
 		try {
 			String urlDuServiceWeb = _adresseHebergeur + _urlArreterEnregistrementParcours;

@@ -60,30 +60,30 @@ public class TestPasserelleServicesWebXML {
 		// System.out.println(unUtilisateur.toString());
 		// }
 
-		// marche pas ! (Erreur : données incomplètes !)
-		// test visuel de la méthode getUnParcoursEtSesPoints
-		Trace laTrace = new Trace();
-		msg = PasserelleServicesWebXML.getUnParcoursEtSesPoints("europa",
-				Outils.sha1("mdputilisateur"), 2, laTrace);
-		// affichage de la réponse
-		System.out.println(msg);
-		// affichage de la trace
-		System.out.println(laTrace.toString());
-
-		//// marche pas ! (Erreur : données incomplètes !)
-		//// test visuel de la méthode getLesParcoursDunUtilisateur
-		// ArrayList<Trace> lesTraces = new ArrayList<Trace>();
-		// msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa",
-		// Outils.sha1("mdputilisateur"),
-		// "callisto", lesTraces);
+		//// marche !
+		//// test visuel de la méthode getUnParcoursEtSesPoints
+		// Trace laTrace = new Trace();
+		// msg = PasserelleServicesWebXML.getUnParcoursEtSesPoints("europa",
+		// Outils.sha1("mdputilisateur"), 2, laTrace);
 		//// affichage de la réponse
 		// System.out.println(msg);
-		//// affichage du nombre de traces
-		// System.out.println("Nombre de traces : " + lesTraces.size());
-		//// affichage de toutes les traces
-		// for (Trace uneTrace : lesTraces)
-		// { System.out.println(uneTrace.toString());
-		// }
+		//// affichage de la trace
+		// System.out.println(laTrace.toString());
+
+		// marche pas ! (Erreur : données incomplètes !)
+		// test visuel de la méthode getLesParcoursDunUtilisateur
+		ArrayList<Trace> lesTraces = new ArrayList<Trace>();
+		msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa",
+				Outils.sha1("mdputilisateur"),
+				"callisto", lesTraces);
+		// affichage de la réponse
+		System.out.println(msg);
+		// affichage du nombre de traces
+		System.out.println("Nombre de traces : " + lesTraces.size());
+		// affichage de toutes les traces
+		for (Trace uneTrace : lesTraces) {
+			System.out.println(uneTrace.toString());
+		}
 
 	} // fin Main
 } // fin class
