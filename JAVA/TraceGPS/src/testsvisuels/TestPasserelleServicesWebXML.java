@@ -60,7 +60,7 @@ public class TestPasserelleServicesWebXML {
 		// System.out.println(unUtilisateur.toString());
 		// }
 
-		// marche pas !
+		// marche pas ! (Erreur : données incomplètes !)
 		// test visuel de la méthode getUnParcoursEtSesPoints
 		Trace laTrace = new Trace();
 		msg = PasserelleServicesWebXML.getUnParcoursEtSesPoints("europa",
@@ -70,7 +70,7 @@ public class TestPasserelleServicesWebXML {
 		// affichage de la trace
 		System.out.println(laTrace.toString());
 
-		//// marche pas
+		//// marche pas ! (Erreur : données incomplètes !)
 		//// test visuel de la méthode getLesParcoursDunUtilisateur
 		// ArrayList<Trace> lesTraces = new ArrayList<Trace>();
 		// msg = PasserelleServicesWebXML.getLesParcoursDunUtilisateur("europa",
