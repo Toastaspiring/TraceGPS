@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceGPS", "TraceGPS\TraceGPS.csproj", "{6DA42A9D-726D-4C06-AF51-71FBB677D3B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestTraceGPS", "UnitTestTraceGPS\UnitTestTraceGPS.csproj", "{57B54481-BD1D-4036-8ACE-4A17E721A233}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DA42A9D-726D-4C06-AF51-71FBB677D3B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA42A9D-726D-4C06-AF51-71FBB677D3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA42A9D-726D-4C06-AF51-71FBB677D3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA42A9D-726D-4C06-AF51-71FBB677D3B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57B54481-BD1D-4036-8ACE-4A17E721A233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B54481-BD1D-4036-8ACE-4A17E721A233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B54481-BD1D-4036-8ACE-4A17E721A233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B54481-BD1D-4036-8ACE-4A17E721A233}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
