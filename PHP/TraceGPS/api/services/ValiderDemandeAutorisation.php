@@ -38,7 +38,7 @@ if ($this->getMethodeRequete() != "GET")
 }
 else {
     // Les paramètres doivent être présents et corrects
-    if ( $mdpSha1 == "" || $pseudoAutorisant == "" || $pseudoAutorise == "" || ( $decision != "0" || $decision != "1" ) )
+    if ( $mdpSha1 == "" || $pseudoAutorisant == "" || $pseudoAutorise == "" || ( $decision != "0" && $decision != "1" ) )
     {	$message = "Erreur : données incomplètes ou incorrectes.";
         $code_reponse = 400;
     }
