@@ -1,5 +1,5 @@
 <?php
-namespace api;
+namespace modele;
 // Projet TraceGPS
 // fichier : modele/DAO.test.php
 // Rôle : test de la classe DAO.php
@@ -241,7 +241,7 @@ $nbPoints = sizeof($lesPoints);
 echo "<p>Nombre de points de la trace 1 : " . $nbPoints . "</p>";
 // on crée un sixième point et on l'ajoute à la trace 1
 $unIdTrace = 1;
-$unID = 6;
+$unID = $nbPoints+1;
 $uneLatitude = 48.20;
 $uneLongitude = -1.55;
 $uneAltitude = 50;

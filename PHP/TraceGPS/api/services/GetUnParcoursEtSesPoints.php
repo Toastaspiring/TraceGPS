@@ -1,170 +1,232 @@
 <?php
+
+
+
+
 namespace api\services;
 use modele\DAO;
 use DOMDocument;
-
-/*
-Projet TraceGPS - services web
-fichier : services/GetUnParcoursEtSesPoints.php
-Dernière mise à jour : 21/11/2023 par Ethan DIVET
-
-Rôle : ce service permet à un utilisateur d'obtenir le détail d'un de ses parcours ou d'un parcours d'un membre qui l'autorise
-
-Le service web doit recevoir 3 paramètres :
-    pseudo : le pseudo de l'utilisateur qui demande à consulter
-    mdpSha1 : le mot de passe hashé en sha1 de l'utilisateur qui demande à consulter
-    idTrace : l'id de la trace à consulter
-
-Le service retourne un flux de données XML contenant un compte-rendu d'exécution ainsi que la synthèse et la liste des points du parcours
-
-Les paramètres peuvent être passés par la méthode GET (pratique pour les tests, mais à éviter en exploitation) :
-    http://<hébergeur>/GetUnParcoursEtSesPoints.php?pseudo=europa&mdpSha1=13e3668bbee30b004380052b086457b014504b3e&idTrace=2
-
-Les paramètres peuvent être passés par la méthode POST (à privilégier en exploitation pour la confidentialité des données) :
-    http://<hébergeur>/GetUnParcoursEtSesPoints.php
-*/
-
-// connexion du serveur web à la base MySQL
+// connexion du serveur web a la base MySQL
 $dao = new DAO();
-	
-// Récupération des données transmises
-// la fonction $_GET récupère une donnée passée en paramètre dans l'URL par la méthode GET
-// la fonction $_POST récupère une donnée envoyées par la méthode POST
-// la fonction $_REQUEST récupère par défaut le contenu des variables $_GET, $_POST, $_COOKIE
-if ( empty ($_REQUEST ["pseudo"]) == true)  $pseudo = "";  else   $pseudo = $_REQUEST ["pseudo"];
-if ( empty ($_REQUEST ["mdpSha1"]) == true)  $mdpSha1 = "";  else   $mdpSha1 = $_REQUEST ["mdpSha1"];
-if ( empty ($_REQUEST ["idTrace"]) == true)  $idTrace = "";  else   $idTrace = $_REQUEST ["idTrace"];
+// Recuperation des donnees transmises
+$pseudo = ( empty($this->request['pseudo'])) ? "" : $this->request['pseudo'];
+$mdpSha1 = ( empty($this->request['mdp'])) ? "" : $this->request['mdp'];
+$idTrace =( empty($this->request['idTrace'])) ? "" : $this->request['idTrace'];
+$lang = ( empty($this->request['lang'])) ? "" : $this->request['lang'];
 
-// initialisation
-$laTrace = null;
+if ($lang != "json") $lang = "xml";
 
-// Contrôle de la présence des paramètres
-if ( $pseudo == "" || $mdpSha1 == "" || $idTrace == "" )
-{	$msg = "Erreur : données incomplètes !";
+if ($this->getMethodeRequete() != "GET")
+{	$msg = "Erreur : methode HTTP incorrecte.";
+$code_reponse = 406;
 }
-else
-{	if ( $dao->getNiveauConnexion($pseudo, $mdpSha1) == 0 )
-    {   $msg = "Erreur : authentification incorrecte !";
+else {
+    // Les parametres doivent etre presents
+    if ( $pseudo == "" || $mdpSha1 == "" || $idTrace == "")
+    {	$msg = "Erreur : donnees incompletes.";
+        $uneTrace=null;
+        $desPointsDeTraces=null;
+        $code_reponse = 400;
     }
-	else 
-	{	// contrôle d'existence de idTrace
-	    $laTrace = $dao->getUneTrace($idTrace);
-	    if ($laTrace == null)
-	    {  $msg = "Erreur : parcours inexistant !";
-	    }
-	    else
-	    {   // récupération de l'id de l'utilisateur demandeur et du propriétaire du parcours
-    	    $idDemandeur = $dao->getUnUtilisateur($pseudo)->getId();
-    	    $idProprietaire = $laTrace->getIdUtilisateur();
-    	    
-    	    // vérification de l'autorisation
-    	    if ( $idDemandeur != $idProprietaire && $dao->autoriseAConsulter($idProprietaire, $idDemandeur) == false )
-    	    {   $msg = "Erreur : vous n'êtes pas autorisé par le propriétaire du parcours !";
-    	    }
-            else
-            {   $msg = "Données de la trace demandée.";
+    else if ($dao->getUneTrace($idTrace)==false)
+    {	$msg = "Erreur : parcours inexistant.";
+        $uneTrace=null;
+        $desPointsDeTraces=null;
+        $code_reponse = 400;
+    }
+    else
+    {	$niveauConnexion = $dao->getNiveauConnexion($pseudo, $mdpSha1);
+    
+    switch ($niveauConnexion)
+    {   case 0 :
+        $msg = "Erreur : authentification incorrecte.";
+        $uneTrace=null;
+        $desPointsDeTraces=null;
+        $code_reponse = 401; break;
+    case 1 :
+        $unUtilisateur=$dao->getUnUtilisateur($pseudo);
+        $lesTracesAutorise=$dao->getLesTracesAutorisees($unUtilisateur->getId());
+        foreach ($lesTracesAutorise as $element)
+        {
+            if ($element->getId()==$idTrace)
+            {
+                $msg = "Donnees de la trace demandee.";
+                $uneTrace=$dao->getUneTrace($idTrace);
+                $desPointsDeTraces=$dao->getLesPointsDeTrace($idTrace);
+                $code_reponse = 200; break;
             }
-	    }
-	}
+        }
+        if (!isset($msg))
+        {
+            $msg="Erreur : vous n'etes pas autorise par le proprietaire du parcours.";
+            $uneTrace=null;
+            $desPointsDeTraces=null;
+            $code_reponse = 400;break;
+        }
+    }
+    }
 }
-// ferme la connexion à MySQL
+// ferme la connexion a MySQL :
 unset($dao);
 
-// création du flux XML en sortie
-creerFluxXML ($msg, $laTrace);
+// creation du flux en sortie
+if ($lang == "xml") {
+    $content_type = "application/xml; charset=utf-8";      // indique le format XML pour la reponse
+    $donnees = creerFluxXML($msg,$uneTrace,$desPointsDeTraces);
+}
+else {
+    $content_type = "application/json; charset=utf-8";      // indique le format Json pour la reponse
+    $donnees = creerFluxJSON($msg,$uneTrace,$desPointsDeTraces);
+}
 
-// fin du programme (pour ne pas enchainer sur la fonction qui suit)
+// envoi de la reponse HTTP
+$this->envoyerReponse($code_reponse, $content_type, $donnees);
+
+// fin du programme (pour ne pas enchainer sur les 2 fonctions qui suivent)
 exit;
 
-// création du flux XML en sortie
-function creerFluxXML($msg, $laTrace)
-{	// crée une instance de DOMdocument (DOM : Document Object Model)
-	$doc = new DOMDocument();
-	
-	// specifie la version et le type d'encodage
-	$doc->version = '1.0';
-	$doc->encoding = 'UTF-8';
-	
-	// crée un commentaire et l'encode en UTF-8
-	$elt_commentaire = $doc->createComment('Service web GetUnParcoursEtSesPoints - BTS SIO - Lycée De La Salle - Rennes');
-	// place ce commentaire à la racine du document XML
-	$doc->appendChild($elt_commentaire);
-	
-	// crée l'élément 'data' à la racine du document XML
-	$elt_data = $doc->createElement('data');
-	$doc->appendChild($elt_data);
-	
-	// place l'élément 'reponse' dans l'élément 'data'
-	$elt_reponse = $doc->createElement('reponse', $msg);
-	$elt_data->appendChild($elt_reponse);
-	
-	// place l'élément 'donnees' dans l'élément 'data'
-	$elt_donnees = $doc->createElement('donnees');
-	$elt_data->appendChild($elt_donnees);
 
-	if ($laTrace != null)
-	{
-	    // place l'élément 'trace' dans l'élément 'donnees'
-	    $elt_trace = $doc->createElement('trace');
-	    $elt_donnees->appendChild($elt_trace);
-	    
-	    // place la description de la trace dans l'élément 'trace'
-	    $elt_id = $doc->createElement('id', $laTrace->getId());
-	    $elt_trace->appendChild($elt_id);
-    	
-    	$elt_dateHeureDebut = $doc->createElement('dateHeureDebut', $laTrace->getDateHeureDebut());
-    	$elt_trace->appendChild($elt_dateHeureDebut);
-  
-    	$elt_terminee = $doc->createElement('terminee', $laTrace->getTerminee());
-    	$elt_trace->appendChild($elt_terminee);
-    	
-    	if ($laTrace->getTerminee() == true)
-    	{   $elt_dateHeureFin = $doc->createElement('dateHeureFin', $laTrace->getDateHeureFin());
+//-------------------------------------------------------------------
+
+// creation du flux XML en sortie
+function creerFluxXML($msg,$uneTrace,$desPointsDeTraces)
+{
+    /* Exemple de code XML
+     <?xml version="1.0" encoding="UTF-8"?>
+     <!--Service web Connecter - BTS SIO - Lycee De La Salle - Rennes-->
+     <data>
+     <reponse>Erreur : donnees incompletes.</reponse>
+     </data>
+     */
+    
+    // cree une instance de DOMdocument (DOM : Document Object Model)
+    $doc = new DOMDocument();
+    
+    // specifie la version et le type d'encodage
+    $doc->version = '1.0';
+    $doc->encoding = 'UTF-8';
+    
+    // cree un commentaire et l'encode en UTF-8
+    $elt_commentaire = $doc->createComment('Service web Connecter - BTS SIO - Lycee De La Salle - Rennes');
+    // place ce commentaire a la racine du document XML
+    $doc->appendChild($elt_commentaire);
+    
+    // cree l'element 'data' a la racine du document XML
+    $elt_data = $doc->createElement('data');
+    $doc->appendChild($elt_data);
+    
+    // place l'element 'reponse' juste apres l'element 'data'
+    $elt_reponse = $doc->createElement('reponse', $msg);
+    $elt_data->appendChild($elt_reponse);
+    
+    if($uneTrace!=null and $desPointsDeTraces!=null)
+    {
+        // place l'element 'donnees' juste apres l'element 'data'
+        $elt_donnees = $doc->createElement('donnees');
+        $elt_data->appendChild($elt_donnees);
+        
+        // place l'element 'trace' juste apres l'element 'donnees'
+        $elt_trace = $doc->createElement('trace');
+        $elt_donnees->appendChild($elt_trace);
+        
+
+        $elt_id = $doc->createElement('id',$uneTrace->getId());
+        $elt_trace->appendChild($elt_id);
+        
+
+        $elt_dateHeureDebut = $doc->createElement('dateHeureDebut',$uneTrace->getDateHeureDebut());
+        $elt_trace->appendChild($elt_dateHeureDebut);
+        
+
+        $elt_terminee = $doc->createElement('terminee',$uneTrace->getTerminee());
+        $elt_trace->appendChild($elt_terminee);
+        
+
+        if ($uneTrace->getDateHeureFin()!=null)
+        {
+            $elt_dateHeureFin = $doc->createElement('dateHeureFin',$uneTrace->getDateHeureFin());
             $elt_trace->appendChild($elt_dateHeureFin);
-    	}
-    	
-    	$elt_idUtilisateur = $doc->createElement('idUtilisateur', $laTrace->getIdUtilisateur());
-    	$elt_trace->appendChild($elt_idUtilisateur);
-    		
-    	// place l'élément 'lespoints' dans l'élément 'donnees'
-    	$elt_lespoints = $doc->createElement('lespoints');
-    	$elt_donnees->appendChild($elt_lespoints);
-    	
-    	// traitement des points
-    	if (sizeof($laTrace->getLesPointsDeTrace()) > 0) {
-    	    foreach ($laTrace->getLesPointsDeTrace() as $unPointDeTrace)
-    		{
-    			// crée un élément vide 'point'
-    		    $elt_point = $doc->createElement('point');
-    		    // place l'élément 'point' dans l'élément 'lespoints'
-    		    $elt_lespoints->appendChild($elt_point);
-    		
-    		    // crée les éléments enfants de l'élément 'point'
-    		    $elt_id             = $doc->createElement('id', $unPointDeTrace->getId());
-    		    $elt_point->appendChild($elt_id);
-    		    
-    		    $elt_latitude       = $doc->createElement('latitude', $unPointDeTrace->getLatitude());
-    		    $elt_point->appendChild($elt_latitude);
-    		    
-    		    $elt_longitude      = $doc->createElement('longitude', $unPointDeTrace->getLongitude());
-    		    $elt_point->appendChild($elt_longitude);
-    		    
-    		    $elt_altitude       = $doc->createElement('altitude', $unPointDeTrace->getAltitude());
-    		    $elt_point->appendChild($elt_altitude);
-    		    
-    		    $elt_dateHeure      = $doc->createElement('dateHeure', $unPointDeTrace->getDateHeure());
-    		    $elt_point->appendChild($elt_dateHeure);
-    		    
-    		    $elt_rythmeCardio       = $doc->createElement('rythmeCardio', $unPointDeTrace->getRythmeCardio());
-    		    $elt_point->appendChild($elt_rythmeCardio);
-    		}
-    	}
-	}
-	// Mise en forme finale
-	$doc->formatOutput = true;
-	
-	// renvoie le contenu XML
-	echo $doc->saveXML();
-	return;
+        }
+        
+
+        $elt_idUtilisateur = $doc->createElement('idUtilisateur',$uneTrace->getIdUtilisateur());
+        $elt_trace->appendChild($elt_idUtilisateur);
+        
+        $elt_lesPoints = $doc->createElement('lesPoints');
+        $elt_donnees->appendChild($elt_lesPoints);
+        
+        foreach ($desPointsDeTraces as $unPointsDeTrace)
+        {
+            
+            $elt_point = $doc->createElement('point');
+            $elt_lesPoints->appendChild($elt_point);
+            
+            $elt_id = $doc->createElement('id',$unPointsDeTrace->getId());
+            $elt_point->appendChild($elt_id);
+            
+            $elt_latitude = $doc->createElement('latitude',$unPointsDeTrace->getLatitude());
+            $elt_point->appendChild($elt_latitude);
+            
+            $elt_longitude = $doc->createElement('longitude',$unPointsDeTrace->getLongitude());
+            $elt_point->appendChild($elt_longitude);
+            
+            $elt_altitude = $doc->createElement('altitude',$unPointsDeTrace->getAltitude());
+            $elt_point->appendChild($elt_altitude);
+            
+            $elt_dateHeure = $doc->createElement('dateHeure',$unPointsDeTrace->getDateHeure());
+            $elt_point->appendChild($elt_dateHeure);
+            
+            $elt_rythmeCardio = $doc->createElement('rythmeCardio',$unPointsDeTrace->getRythmeCardio());
+            $elt_point->appendChild($elt_rythmeCardio);
+        }
+    }
+
+    // Mise en forme finale
+    $doc->formatOutput = true;
+    
+    // renvoie le contenu XML
+    return $doc->saveXML();
 }
-?>
+
+// ================================================================================================
+
+// creation du flux JSON en sortie
+function creerFluxJSON($msg,$uneTrace,$desPointsDeTraces)
+{
+    /* Exemple de code JSON
+     {
+     "data":{
+     "reponse": "authentification incorrecte."
+     }
+     }
+     */
+    if($uneTrace!=null and $desPointsDeTraces!=null)
+    {
+        $elt_lesPoints=[];
+        foreach ($desPointsDeTraces as $unPointsDeTrace)
+        {
+            
+            $elt_point = ['id'=>$unPointsDeTrace->getId(),'latitude'=>$unPointsDeTrace->getLatitude(),'longitude'=>$unPointsDeTrace->getLongitude(),'altitude'=>$unPointsDeTrace->getAltitude(),'dateHeure'=>$unPointsDeTrace->getDateHeure(),'rythmeCardio'=>$unPointsDeTrace->getRythmeCardio()];
+            $elt_lesPoints[]=$elt_point;
+
+        }
+        
+        $elt_trace=["id"=>$uneTrace->getId(),"dateHeureDebut"=>$uneTrace->getDAteHeureDebut(),"terminee"=>$uneTrace->getTerminee(),"dateHeureFin"=>$uneTrace->getDateHeureFin(),"idUtilisateur"=>$uneTrace->getIdUtilisateur()];
+    // 2 notations possibles pour creer des tableaux associatifs (la deuxieme est en commentaire)
+        $elt_donnees=["trace"=>$elt_trace,"lesPoints"=>$elt_lesPoints];
+        $elt_data = ["reponse" => $msg,"donnees"=>$elt_donnees];
+    }
+    else{$elt_data = ["reponse" => $msg];}
+    // construction de l'element "data"
+    
+    //     $elt_data = array("reponse" => $msg);
+    
+    // construction de la racine
+    $elt_racine = ["data" => $elt_data];
+    //     $elt_racine = array("data" => $elt_data);
+    
+    // retourne le contenu JSON (l'option JSON_PRETTY_PRINT gere les sauts de ligne et l'indentation)
+    return json_encode($elt_racine, JSON_PRETTY_PRINT);
+}
+
+// ================================================================================================

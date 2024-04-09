@@ -650,17 +650,13 @@ class DAO
 
     public function creerUnPointDeTrace($unPointDeTrace) {
 
-        //verifie si un enregistrement avec les même valeur existe ( id car cle primaire ne peut être dupliquer)
-        $txt_req2 = "SELECT COUNT(*) AS nb FROM tracegps_points WHERE id = :id";
-        $req2 = $this->cnx->prepare($txt_req2);
-        $req2->bindValue("id",$unPointDeTrace->getId());
-        $req2->execute();
+        // //verifie si un enregistrement avec les même valeur existe ( id car cle primaire ne peut être dupliquer)
+        // $txt_req2 = "SELECT COUNT(*) AS nb FROM tracegps_points WHERE idTrace = :idTrace";
+        // $req2 = $this->cnx->prepare($txt_req2);
+        // $req2->bindValue("idTrace",$unPointDeTrace->getIdTrace());
+        // $req2->execute();
 
-        $nb = $req2->fetchColumn();
-
-        if ($nb > 0) {
-            return null;
-        }
+        // $nb = $req2->fetchColumn();
 
         // on teste si l'utilisateur existe déjà
         // prÃ©paration de la requÃªte idTrace ,id, latitude, longitude, altitude, dateHeure, rythmeCardio, tempsCumule, distanceCumulee, vitesse

@@ -218,6 +218,7 @@ public class PasserelleServicesWebXML extends PasserelleXML {
 			urlDuServiceWeb += "&pseudoAsupprimer=" + pseudoAsupprimer;
 
 			// création d'un flux en lecture (InputStream) à partir du service
+			System.err.println(urlDuServiceWeb);
 			InputStream unFluxEnLecture = getFluxEnLecture(urlDuServiceWeb);
 
 			// création d'un objet org.w3c.dom.Document à partir du flux ; il servira à

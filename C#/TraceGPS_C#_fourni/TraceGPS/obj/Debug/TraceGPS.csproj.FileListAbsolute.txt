@@ -1,0 +1,104 @@
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csprojResolveAssemblyReference.cache
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Visual Studio Projets\TraceGPS\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csprojResolveAssemblyReference.cache
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\2- TP Developpement API TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\GMap.NET.Core.xml
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\GMap.NET.WindowsForms.xml
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csprojResolveAssemblyReference.cache
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+C:\JM\Travail\SIO2\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.exe
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\GMap.NET.Core.xml
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\GMap.NET.WindowsForms.xml
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csprojResolveAssemblyReference.cache
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+C:\Users\cartron.j\Documents\Jim\SLAM45\2.1 - Traitement fichier gps\3- TP Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\3- TP initial Développement appli TraceGPS en C#\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\3- TP initial Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\3- TP initial Développement appli TraceGPS en C#\TraceGPS\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\bin\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS\TraceGPS\obj\Debug\TraceGPS.FormIdentification.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormIdentification.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\8- Développement application Windows (consultation traces)\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csprojResolveAssemblyReference.cache
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormIdentification.resources
+C:\JM\Travail\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+F:\cours 2021-2022\SIO\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe.config
+F:\cours 2021-2022\SIO\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.exe
+F:\cours 2021-2022\SIO\SIO2\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.pdb
+F:\cours 2021-2022\SIO\SIO2 DP\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe.config
+F:\cours 2021-2022\SIO\SIO2 DP\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.exe
+F:\cours 2021-2022\SIO\SIO2 DP\2.10 - PPE Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.pdb
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe.config
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.exe
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.pdb
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.pdb
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csprojResolveAssemblyReference.cache
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormIdentification.resources
+D:\cours 2021-2022\SIO\SIO2 DP\2.10 - AP Projet TraceGPS\7- Développement de l'API C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.Cache
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe.config
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.exe
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\bin\Debug\TraceGPS.pdb
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.AssemblyReference.cache
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Properties.Resources.resources
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.Form1.resources
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormAPropos.resources
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.FormIdentification.resources
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.GenerateResource.cache
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.CoreCompileInputs.cache
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.csproj.CopyComplete
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.exe
+C:\wamp64\www\developpement\TraceGPS\C#\TraceGPS_C#_fourni\TraceGPS\obj\Debug\TraceGPS.pdb
